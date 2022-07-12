@@ -21,6 +21,7 @@ Current Features :
 <li>Getting Suggestions to Follow Users</li>
 <li>Profile Page with User data</li>
 <li>Default Profile Image to every user</li>
+<li>Responsive Popup Modals for: Likes, Followings, Followers, UserEdit Details </li>
 <li>Updating Profile Deatils and Image</li>
 <li>Protected Routes</li>
 <br/>
