@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@tailwind variants;
+
+@layer components {
+  .navButton {
+    @apply h-7 w-7 cursor-pointer text-gray-600 transition-all duration-150 ease-out hover:scale-125 sm:inline-flex sm:h-8 sm:w-8;
+  }
+  .input {
+    @apply mx-4 mb-2 h-2 w-11/12 rounded-md border-[2.4px] border-gray-300 bg-gray-400 bg-opacity-5 py-6 px-4 text-lg text-black hover:border-gray-500 focus:outline-none;
+  }
+  .submit {
+    @apply mx-4 my-3 w-11/12 items-center justify-center rounded-md border bg-sky-500 py-2 text-center text-lg font-semibold text-white;
+  }
+  .grid {
+    @apply container mx-auto flex h-screen max-w-screen-md flex-col place-items-center items-center justify-center;
+  }
+  .top-grid {
+    @apply flex max-w-sm flex-col items-center border border-gray-200 bg-white;
+  }
+  .bottom-grid {
+    @apply flex w-96 items-center border border-gray-200 bg-white py-5 px-14;
+  }
+  .error-text {
+    @apply mb-4 -mt-4 text-sm font-semibold text-red-500;
+  }
+  .postButton {
+    @apply h-9 w-9 cursor-pointer text-gray-600 transition-all  duration-150 ease-out hover:scale-125 sm:h-8 sm:w-8;
+  }
+  .image-grid {
+    @apply grid h-0 grid-cols-3 gap-3;
+  }
+  .image-wrap {
+    @apply relative cursor-pointer h-0 w-auto overflow-hidden py-[75%] px-0 pt-0;
+  }
+  .image {
+    @apply min-h-full h-32 sm:h-40 lg:h-48 object-cover min-w-full border object-center;
+  }
+}
