@@ -73,7 +73,7 @@ function UserEditModal() {
           editBio,
           selectedFile
         );
-        
+
         await updateUserAuthDetails(username, edituserName);
         setTimeout(() => {
           setSelectedFile(null);
@@ -82,7 +82,7 @@ function UserEditModal() {
           edituserName
             ? (navigate(`/profile/${edituserName}`), document.location.reload())
             : document.location.reload();
-        }, 10000);
+        }, 4000);
       } else {
         setUserName("");
         setError("Username already exists. Please choose another one");
