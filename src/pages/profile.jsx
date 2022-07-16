@@ -10,6 +10,7 @@ import FollowingModal from "../components/Modals/FollowingModal";
 import SuggestionsList from "../components/UserProfile/SuggestionsList";
 import Loader from "../components/UserProfile/Loader";
 import TopScroll from "../components/TopScroll";
+import SearchBarModal from "../components/Modals/SearchBarModal";
 
 function Profile() {
   // fetch username from url params
@@ -29,6 +30,7 @@ function Profile() {
   }, [username, navigate]);
   return (
     <div>
+      <SearchBarModal />
       <UserEditModal />
       <FollowersModal />
       <FollowingModal />

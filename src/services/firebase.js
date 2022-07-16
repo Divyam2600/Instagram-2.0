@@ -460,3 +460,13 @@ export async function updateUserCommentsDetails(
     });
   });
 }
+
+export async function getAllUsers(){
+  const usersRef = collection(db, "users");
+  const getResult = await getDocs(usersRef);
+  const users = getResult.docs.map((user) => ({
+    ...user.data(),
+    id: user.id,
+  }));
+  return users
+}

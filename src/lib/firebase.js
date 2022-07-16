@@ -7,7 +7,7 @@ const firebaseConfig = {
   projectId: "insta-2-clone-6d3d8",
   storageBucket: "insta-2-clone-6d3d8.appspot.com",
   messagingSenderId: "878180342654",
-  appId: "1:878180342654:web:b9e88175ea923cdccaf12f",
+  appId: "1:878180342654:web:441b106fe01c0edfcaf12f"
 };
 const firebaseApp = initializeApp(firebaseConfig);
 const { value } = new FieldValue();

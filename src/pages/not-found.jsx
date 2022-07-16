@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import * as ROUTES from "../constants/routes";
 import Header from "../components/Header";
+import SearchBarModal from "../components/Modals/SearchBarModal";
 
 function NotFound() {
   useEffect(() => {
@@ -11,6 +12,7 @@ function NotFound() {
 
   return (
     <div className="h-full bg-white">
+      <SearchBarModal />
       <Header />
       <p className="m-10 text-5xl text-center font-bold mt-24">Error 404!!!</p>
       <p className="m-8 text-3xl text-center font-bold">

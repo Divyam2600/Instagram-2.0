@@ -9,6 +9,7 @@ import PostModal from "../components/Modals/PostModal";
 import LikesModal from "../components/Modals/LikesModal";
 import CommentLikesModal from "../components/Modals/CommentLikesModal";
 import TopScroll from "../components/TopScroll";
+import SearchBarModal from "../components/Modals/SearchBarModal";
 
 function Dashboard() {
   useEffect(() => {
@@ -18,6 +19,7 @@ function Dashboard() {
 
   return (
     <div className="overflow-hidden h-full min-h-screen">
+      <SearchBarModal />
       <PostModal />
       <LikesModal />
       <CommentLikesModal />

@@ -39,3 +39,8 @@ export const photoDisplayModalState = atom({
   key: "photoDisplayModalState",
   default: false,
 });
+
+export const searchBarModalState = atom({
+  key: "searchBarModalState",
+  default: false,
+});

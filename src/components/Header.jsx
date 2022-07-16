@@ -12,11 +12,12 @@ import * as ROUTES from "../constants/routes";
 import { Link } from "react-router-dom";
 import { getAuth, signOut } from "firebase/auth";
 import { useRecoilState } from "recoil";
-import { postModalState } from "../atoms/modalAtom";
+import { postModalState, searchBarModalState } from "../atoms/modalAtom";
 import useUser from "../hooks/use-user";
 function Header() {
   const { user } = useContext(UserContext);
   const [open, setOpen] = useRecoilState(postModalState);
+  const [isOpen, setIsOpen] = useRecoilState(searchBarModalState);
   const auth = getAuth();
   const {
     user: { username, image },
@@ -43,14 +44,17 @@ function Header() {
         </Link>
         {/* Middle Part */}
         <div className="-mr-1 max-w-[140px] sm:max-w-xs">
-          <div className="relative mt-1 mb-1 rounded-md p-3">
+          <div
+            className="relative mt-1 mb-1 rounded-md p-3"
+            onClick={() => setIsOpen(true)}
+          >
             <div className="pointer-events-none absolute inset-y-0 flex items-center pl-3">
               <SearchIcon className="h-5 w-5 text-gray-500" />
             </div>
             <input
               type="text"
               placeholder="Search"
-              className="block w-full rounded-md border-[2.4px] border-gray-400 bg-gray-100 p-2 pl-10 hover:border-gray-500 focus:border-gray-500 focus:outline-none sm:text-base"
+              className="block caret-transparent w-full rounded-md border-[2.4px] border-gray-400 bg-gray-100 p-2 pl-10 hover:border-gray-500 focus:outline-none sm:text-base"
             />
           </div>
         </div>
