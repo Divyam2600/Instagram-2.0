@@ -114,7 +114,7 @@ export async function getPhotos(userId, following) {
     userFollowedPhotos.map(async (photo) => {
       // checks if the logged in user already likes that post or not
       let userLikedPhoto = false;
-      photo.likes?.map((res) => {
+      photo?.likes?.map((res) => {
         if (res === userId) {
           userLikedPhoto = true;
         }
@@ -395,4 +395,68 @@ export async function getCommentLikedUsers(photoId, commentId) {
   // extracts the data from the promise
   const result = await Promise.all(data);
   return result;
+}
+
+export async function updateUserPostDetails(
+  username,
+  edituserName,
+  selectedFile
+) {
+  const photosRef = collection(db, "photos");
+  const result = query(photosRef, where("username", "==", username));
+  const getResult = await getDocs(result);
+  getResult.forEach(async (res) => {
+    const photoRef = doc(photosRef, res.id);
+    const imageRef = ref(storage, `posts/${res.id}/user/image`);
+    selectedFile
+      ? await uploadString(imageRef, selectedFile, "data_url").then(
+          async (snapshot) => {
+            const downloadUrl = await getDownloadURL(imageRef);
+            await updateDoc(photoRef, {
+              username: edituserName ? edituserName : username,
+              userImage: downloadUrl,
+            });
+          }
+        )
+      : await updateDoc(photoRef, {
+          username: edituserName ? edituserName : username,
+        });
+  });
+}
+
+export async function updateUserCommentsDetails(
+  username,
+  edituserName,
+  selectedFile
+) {
+  const photosRef = collection(db, "photos");
+  const result = query(photosRef, where("username", "!=", ""));
+  const getResult = await getDocs(result);
+  getResult.forEach(async (res) => {
+    const commentsRef = collection(photosRef, res.id, "comments");
+    const response = query(commentsRef, where("username", "==", username));
+    const getResponse = await getDocs(response);
+    getResponse.forEach(async (resp) => {
+      console.log("changing");
+      const commentRef = doc(commentsRef, resp.id);
+      const commRef = ref(
+        storage,
+        `posts/${res.id}/comments/${resp.id}/user/image`
+      );
+      selectedFile
+        ? await uploadString(commRef, selectedFile, "data_url").then(
+            async (snapshot) => {
+              const downloadUrl = await getDownloadURL(commRef);
+              await updateDoc(commentRef, {
+                username: edituserName ? edituserName : username,
+                userImage: downloadUrl,
+              });
+            }
+          )
+        : await updateDoc(commentRef, {
+            username: edituserName ? edituserName : username,
+          });
+      console.log("changed");
+    });
+  });
 }
