@@ -106,15 +106,15 @@ function SignUp() {
   return (
     <div className="grid">
       <div>
-        <div className="top-grid p-[24px] my-3">
-          <h1 className="flex -mx-16 justify-center w-full ">
+        <div className="top-grid my-3 p-[24px]">
+          <h1 className="-mx-16 flex w-full justify-center ">
             <img
               src="/images/logo.png"
               alt="Instagram Logo"
-              className="mt-4 w-48 mb-4 "
+              className="mt-4 mb-4 w-48 "
             />
           </h1>
-          <h1 className="flex text-center justify-center ">
+          <h1 className="flex justify-center text-center ">
             <p className="mb-8 text-[22px] font-semibold text-gray-400 ">
               Sign up to see photos and videos from your friends.
             </p>

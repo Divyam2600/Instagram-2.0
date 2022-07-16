@@ -26,18 +26,18 @@ function SuggestedProfile({
     }, 5000);
   }
   return !followed ? (
-    <div className="flex items-center justify-between mt-3">
+    <div className="mt-3 flex items-center justify-between">
       <img
         src={userImage}
         alt={`${username}`}
-        className="rounded-full cursor-pointer h-12 w-12 border-2 p-[2px] border-gray-300"
+        className="h-12 w-12 cursor-pointer rounded-full border-2 border-gray-300 object-cover p-[2px]"
       />
-      <Link to={`/profile/${username}`} className="flex-1 ml-4 mr-2">
-        <h2 className="font-semibold text-sm cursor-pointer">{username}</h2>
-        <h3 className="text-gray-400 text-xs truncate">New To Instagram</h3>
+      <Link to={`/profile/${username}`} className="ml-4 mr-2 flex-1">
+        <h2 className="cursor-pointer text-sm font-semibold">{username}</h2>
+        <h3 className="truncate text-xs text-gray-400">New To Instagram</h3>
       </Link>
       <button
-        className="text-blue-500 font-semibold text-xs mb-4"
+        className="mb-4 text-xs font-semibold text-blue-500"
         onClick={handleFollowUser}
       >
         Follow
