@@ -7,9 +7,7 @@ import useUser from "../../hooks/use-user";
 import {
   doesUsernameExist,
   updateUserAuthDetails,
-  updateUserCommentsDetails,
   updateUserDetails,
-  updateUserPostDetails,
 } from "../../services/firebase";
 import { useNavigate } from "react-router-dom";
 
@@ -60,8 +58,6 @@ function UserEditModal() {
       } else if (!usernameExists.length || editfullName !== "") {
         setLoading(true);
         setUserName(edituserName.toLowerCase());
-        await updateUserPostDetails(username, edituserName, selectedFile);
-        await updateUserCommentsDetails(username, edituserName, selectedFile);
         await updateUserDetails(
           id,
           userId,
@@ -73,15 +69,13 @@ function UserEditModal() {
           editBio,
           selectedFile
         );
+        setOpen(false);
+        setLoading(false);
+        setSelectedFile(null);
         await updateUserAuthDetails(username, edituserName);
-        setTimeout(() => {
-          setSelectedFile(null);
-          setLoading(false);
-          setOpen(false);
-          edituserName
-            ? (navigate(`/profile/${edituserName}`), document.location.reload())
-            : document.location.reload();
-        }, 10000);
+        edituserName
+          ? (navigate(`/profile/${edituserName}`), document.location.reload())
+          : document.location.reload();
       } else {
         setUserName("");
         setError("Username already exists. Please choose another one");

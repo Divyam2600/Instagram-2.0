@@ -6,6 +6,7 @@ import {
   HomeIcon,
   LogoutIcon,
   LoginIcon,
+  XIcon,
 } from "@heroicons/react/outline";
 import UserContext from "../context/user";
 import * as ROUTES from "../constants/routes";
@@ -21,6 +22,8 @@ function Header() {
   const {
     user: { username, image },
   } = useUser();
+  const [active, setActive] = useState(false);
+  const [search, setSearch] = useState("");
   return (
     <div className="fixed top-0 z-50 w-screen border-b bg-white shadow-sm">
       <div className="mx-3 flex max-w-7xl items-center justify-evenly lg:-mx-3 xl:mx-auto">
@@ -42,7 +45,11 @@ function Header() {
           />
         </Link>
         {/* Middle Part */}
-        <div className="-mr-1 max-w-[140px] sm:max-w-xs">
+        <div
+          className={`-mr-1 ${
+            active ? " w-[600px]" : "max-w-[140px] sm:max-w-xs"
+          }`}
+        >
           <div className="relative mt-1 mb-1 rounded-md p-3">
             <div className="pointer-events-none absolute inset-y-0 flex items-center pl-3">
               <SearchIcon className="h-5 w-5 text-gray-500" />
@@ -51,11 +58,27 @@ function Header() {
               type="text"
               placeholder="Search"
               className="block w-full rounded-md border-[2.4px] border-gray-400 bg-gray-100 p-2 pl-10 hover:border-gray-500 focus:border-gray-500 focus:outline-none sm:text-base"
+              onClick={() => setActive(true)}
+              onKeyDown={() => setActive(true)}
+              value={search}
+              onChange={({ target }) => setSearch(target.value)}
             />
+            <div
+              className={`absolute top-[22px] right-5 flex cursor-pointer items-center justify-end outline-none ${
+                !active && "hidden"
+              }`}
+              onClick={() =>{ setSearch(""), setActive(false)}}
+            >
+              <XIcon className="h-6 w-6 cursor-pointer text-gray-500" />
+            </div>
           </div>
         </div>
         {/* Right Side */}
-        <div className="flex items-center justify-end space-x-1 lg:space-x-3">
+        <div
+          className={`flex items-center justify-end space-x-1 lg:space-x-3 ${
+            active && "hidden"
+          }`}
+        >
           <Link to={ROUTES.DASHBOARD}>
             <HomeIcon className="navButton hidden sm:flex" />
           </Link>
@@ -90,7 +113,7 @@ function Header() {
                   <img
                     src={image}
                     alt=""
-                    className="mt-1 h-10 w-10 rounded-full border-2 border-gray-200 object-cover p-[1px]"
+                    className="h-10 w-10 rounded-full border-2 border-gray-200 object-cover p-[1px] mt-1"
                   />
                 </Link>
               </div>

@@ -17,7 +17,7 @@ function Dashboard() {
   const { user } = useContext(UserContext);
 
   return (
-    <div className="overflow-hidden h-full min-h-screen ">
+    <div className="overflow-hidden">
       <PostModal />
       <LikesModal />
       <CommentLikesModal />

@@ -15,6 +15,7 @@ function Feed() {
     <Loader />
   ) : photos?.length > 0 ? (
     <>
+    
       <Stories activeUserId={userId} following={following} />
       {photos.map((content) => (
         <div className="" key={content.id}>

@@ -34,8 +34,3 @@ export const commentLikesModalState = atom({
   key: "commentLikesModalState",
   default: false,
 });
-
-export const photoDisplayModalState = atom({
-  key: "photoDisplayModalState",
-  default: false,
-});
