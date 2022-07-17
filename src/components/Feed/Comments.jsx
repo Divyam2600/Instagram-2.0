@@ -39,7 +39,7 @@ function Comments({ id, postedAt, commentInput }) {
     <div>
       {/* Display Comments */}
       {comments.length > 0 && (
-        <div className={`max-h-[108px] overflow-y-scroll scrollbar-thin scrollbar-thumb-gray-500 ${isopen && ("md:max-h-80 md:-ml-6")}`}>
+        <div className={`max-h-[108px] overflow-y-scroll scrollbar-thin scrollbar-thumb-gray-500 ${isopen && ("md:max-h-80 -ml-6")}`}>
           {comments.map((comment) => (
             <div className="" key={comment.id}>
               <Comment
@@ -59,11 +59,11 @@ function Comments({ id, postedAt, commentInput }) {
       {/* Comment Input */}
       <div>
         <form className="flex items-center border-y border-gray-200 px-4">
-          <EmojiHappyIcon className="h-7 w-7 text-gray-700" />
+          <EmojiHappyIcon className="h-7 w-7 cursor-pointer text-gray-700" />
           <input
             type="text"
             placeholder="Add a comment..."
-            className="mx-4 flex-1 border-none p-4 outline-none focus:ring-0"
+            className="flex-1 border-none p-4 outline-none focus:ring-0"
             value={comment}
             aria-label="Add a comment"
             autoComplete="off"
