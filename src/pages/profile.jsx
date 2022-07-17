@@ -11,6 +11,8 @@ import SuggestionsList from "../components/UserProfile/SuggestionsList";
 import Loader from "../components/UserProfile/Loader";
 import TopScroll from "../components/TopScroll";
 import SearchBarModal from "../components/Modals/SearchBarModal";
+import PhotoDisplayModal from "../components/Modals/PhotoDisplayModal";
+import PostModal from "../components/Modals/PostModal";
 
 function Profile() {
   // fetch username from url params
@@ -34,10 +36,12 @@ function Profile() {
       <UserEditModal />
       <FollowersModal />
       <FollowingModal />
+      <PostModal />
       <SuggestionsList />
+      <PhotoDisplayModal />
       <TopScroll />
       <Header />
-      <div className="mx-auto mt-20 -mb-6 h-full min-h-screen overflow-x-hidden pb-4 sm:max-w-xl md:max-w-2xl lg:max-w-[52rem] xl:max-w-4xl">
+      <div className="mx-auto scrollbar-hide mt-20 -mb-6 h-full min-h-screen overflow-x-hidden pb-4 sm:max-w-xl md:max-w-2xl lg:max-w-[52rem] xl:max-w-4xl">
         {user ? <UserProfile user={user} /> : <Loader />}
       </div>
     </div>

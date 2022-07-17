@@ -11,7 +11,7 @@ function Post({ content }) {
   const commentInput = useRef(null);
   return (
     <div className="container bg-white my-5 border rounded-md divide-y shadow-md">
-      <Header username={content.username} userImage={content.userImage} />
+      <Header id={content.id} username={content.username} userImage={content.userImage} />
       <Image src={content.imageSrc} caption={content.caption} />
       <div>
         <Buttons
@@ -22,11 +22,13 @@ function Post({ content }) {
         />
         <Captions caption={content.caption} username={content.username} />
       </div>
+      <div>
       <Comments
         id={content.id}
         postedAt={content.timestamp}
         commentInput={commentInput}
       />
+      </div>
     </div>
   );
 }

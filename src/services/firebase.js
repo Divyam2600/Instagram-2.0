@@ -15,6 +15,7 @@ import {
   serverTimestamp,
   orderBy,
   getDoc,
+  deleteDoc,
 } from "firebase/firestore";
 import { ref, getDownloadURL, uploadString } from "firebase/storage";
 import { getAuth, updateProfile } from "firebase/auth";
@@ -333,8 +334,8 @@ export async function getCommentsLength(id) {
 
 // deletes the photo posted both from storage as well as firestore (including its other docs)
 export async function deletePost(photoId) {
-  await deleteDoc(doc(db, "posts", photoId));
-  const imageRef = ref(storage, `posts/${photoId}`);
+  await deleteDoc(doc(db, "photos", photoId));
+  const imageRef = ref(storage, `posts/${photoId}/image`);
   await deleteObject(imageRef).then(() => {
     console.log("Deleted");
   });
@@ -397,6 +398,7 @@ export async function getCommentLikedUsers(photoId, commentId) {
   return result;
 }
 
+// update the details of every post (if any) of the user who is updating his details
 export async function updateUserPostDetails(
   username,
   edituserName,
@@ -424,6 +426,7 @@ export async function updateUserPostDetails(
   });
 }
 
+// update the details of every comment posted by the user who is updating his details
 export async function updateUserCommentsDetails(
   username,
   edituserName,
@@ -461,12 +464,26 @@ export async function updateUserCommentsDetails(
   });
 }
 
-export async function getAllUsers(){
+// fetch all existing users in the entire server
+export async function getAllUsers() {
   const usersRef = collection(db, "users");
   const getResult = await getDocs(usersRef);
   const users = getResult.docs.map((user) => ({
     ...user.data(),
     id: user.id,
   }));
-  return users
+  return users;
+}
+
+// get the particular Photo details which is requested to be seen by the user
+export async function getPhoto(photoId, userId) {
+  const photoRef = doc(db, "photos", photoId);
+  const result = await getDoc(photoRef);
+  let userLikedPhoto = false;
+  result.data().likes?.map((res) => {
+    if (res === userId) {
+      userLikedPhoto = true;
+    }
+  });
+  return { ...result.data(), userLikedPhoto };
 }

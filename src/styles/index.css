@@ -28,13 +28,4 @@
   .postButton {
     @apply h-9 w-9 cursor-pointer text-gray-600 transition-all  duration-150 ease-out hover:scale-125 sm:h-8 sm:w-8;
   }
-  .image-grid {
-    @apply grid h-0 grid-cols-3 gap-3;
-  }
-  .image-wrap {
-    @apply relative cursor-pointer h-0 w-auto overflow-hidden py-[75%] px-0 pt-0;
-  }
-  .image {
-    @apply min-h-full h-32 sm:h-40 lg:h-48 object-cover min-w-full border object-center;
-  }
 }

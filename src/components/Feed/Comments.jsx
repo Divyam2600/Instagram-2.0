@@ -7,6 +7,8 @@ import { getFirestore, onSnapshot } from "firebase/firestore";
 import { firebaseApp } from "../../lib/firebase";
 import ReactTimeAgo from "react-time-ago";
 import Comment from "./Comment";
+import { useRecoilState } from "recoil";
+import { photoDisplayModalState } from "../../atoms/modalAtom";
 
 function Comments({ id, postedAt, commentInput }) {
   const {
@@ -15,6 +17,7 @@ function Comments({ id, postedAt, commentInput }) {
   const [comments, setComments] = useState([]);
   const [comment, setComment] = useState("");
   const db = getFirestore(firebaseApp);
+  const [isopen, setIsOpen] = useRecoilState(photoDisplayModalState);
   // realtime update the comments section
   useEffect(() => {
     async function showComments() {
@@ -36,7 +39,7 @@ function Comments({ id, postedAt, commentInput }) {
     <div>
       {/* Display Comments */}
       {comments.length > 0 && (
-        <div className=" max-h-[108px] overflow-y-scroll border-b scrollbar-thin scrollbar-thumb-gray-500">
+        <div className={`max-h-[108px] overflow-y-scroll scrollbar-thin scrollbar-thumb-gray-500 ${isopen && ("md:max-h-80 md:-ml-6")}`}>
           {comments.map((comment) => (
             <div className="" key={comment.id}>
               <Comment
@@ -55,7 +58,7 @@ function Comments({ id, postedAt, commentInput }) {
       )}
       {/* Comment Input */}
       <div>
-        <form className="flex items-center border-b border-gray-200 px-4">
+        <form className="flex items-center border-y border-gray-200 px-4">
           <EmojiHappyIcon className="h-7 w-7 text-gray-700" />
           <input
             type="text"

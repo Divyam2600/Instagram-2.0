@@ -33,6 +33,7 @@ function Comment({
   if (photoId) {
     likedComment();
   }
+
   const handleToggleLiked = async () => {
     setToggledLiked((toggledLiked) => !toggledLiked);
     await likeComment(photoId, commentId, userId, toggledLiked);

@@ -1,17 +1,51 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, {
+  Fragment,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import { useRecoilState } from "recoil";
 import { photoDisplayModalState } from "../../atoms/modalAtom";
 import { photoIdState } from "../../atoms/idAtom";
 import { Dialog, Transition } from "@headlessui/react";
-import { HeartIcon, XIcon } from "@heroicons/react/outline";
-import { getLikedUsers } from "../../services/firebase";
-import { Link } from "react-router-dom";
+import { XIcon } from "@heroicons/react/outline";
+import { getPhoto } from "../../services/firebase";
+import Header from "../Feed/Header";
+import Image from "../Feed/Image";
+import Buttons from "../Feed/Buttons";
+import Captions from "../Feed/Captions";
+import Comments from "../Feed/Comments";
+import UserContext from "../../context/user";
 
 function PhotoDisplayModal() {
   const [open, setOpen] = useRecoilState(photoDisplayModalState);
-
+  const [photoId, setPhotoId] = useRecoilState(photoIdState);
+  const [photo, setPhoto] = useState(null);
+  const handleFocus = () => commentInput.current.focus();
+  const commentInput = useRef(null);
+  const {
+    user: { uid: userId = "" },
+  } = useContext(UserContext);
+  useEffect(() => {
+    if (open) {
+      const photoObject = async () => {
+        const photos = await getPhoto(photoId, userId);
+        setPhoto(photos);
+      };
+      if (photoId) {
+        photoObject();
+      }
+    } else {
+      setPhotoId("");
+      setPhoto(null);
+    }
+  }, [photoId, open]);
   return (
-    <Transition.Root show={open} as={Fragment}>
+    <Transition.Root
+      show={open}
+      as={Fragment}
+    >
       <Dialog
         as="div"
         className="fixed inset-0 z-[60] overflow-y-auto"
@@ -44,20 +78,43 @@ function PhotoDisplayModal() {
             leaveFrom="opacity-100 translate-y-0 sm:scale-100"
             leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
           >
-            <div className="inline-block w-full transform space-y-4 overflow-hidden rounded-lg bg-white p-4 text-left align-bottom shadow-xl transition-all sm:my-8 sm:max-w-sm sm:p-6 sm:align-middle">
-              <button
-                className="float-right outline-none"
-                onClick={() => setOpen(false)}
+            <div className="inline-block w-full max-w-sm transform space-y-4 overflow-hidden rounded-lg bg-white text-left align-bottom shadow-xl transition-all sm:my-8 sm:align-middle md:max-w-2xl">
+            <button
+                className="float-right p-2 -ml-8 cursor-pointer outline-none "
+                onClick={() => {
+                  setOpen(false), setPhoto(null);
+                }}
               >
-                <XIcon className=" h-6  w-6 cursor-pointer text-gray-300" />
+                <XIcon className=" h-6 w-6 text-gray-300" />
               </button>
-              <div as="h3" className="flex items-center space-x-4  text-2xl ">
-                <div className=" flex h-14 w-14 items-center justify-center rounded-full bg-red-100">
-                  <HeartIcon className="mt-[2px] h-8 w-8 text-red-600" />
+              {photo && (
+                <div className="divide-y md:flex md:divide-y-0 md:space-y-6">
+                  <div className="md:-mr-1 md:border-r">
+                    <Header
+                      username={photo.username}
+                      userImage={photo.userImage}
+                    />
+                    <Image src={photo.imageSrc} caption={photo.caption} />
+                      <Buttons
+                        id={photoId}
+                        totalLikes={photo.likes?.length}
+                        likedPhoto={photo.userLikedPhoto}
+                        handleFocus={handleFocus}
+                      />
+                      <Captions
+                        caption={photo.caption}
+                        username={photo.username}
+                      />
+                  </div>
+                    <div className="items-end md:ml-1 md:flex">
+                      <Comments
+                        id={photoId}
+                        postedAt={photo.timestamp}
+                        commentInput={commentInput}
+                      />
+                    </div>
                 </div>
-                <span>Likes</span>
-              </div>
-              <hr />
+              )}
             </div>
           </Transition.Child>
         </div>
