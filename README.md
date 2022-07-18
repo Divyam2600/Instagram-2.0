@@ -20,9 +20,12 @@ Current Features :
 <li>Like Functionality on both Posts and Comments</li>
 <li>Getting Suggestions to Follow Users</li>
 <li>Profile Page with User data</li>
-<li>Default Profile Image to every user</li>
+<li>Default Profile Image to every User on SignUp</li>
+<li>SearchBar Modal with User Search Functionality</li>
 <li>Responsive Popup Modals for: Likes, Followings, Followers, UserEdit Details </li>
 <li>Updating Profile Deatils and Image</li>
+<li>Photo Popup Modal in Profile Page</li>
+<li>Delete Post functionality for the owner</li>
 <li>Protected Routes</li>
 <br/>
 
