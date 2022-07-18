@@ -22,3 +22,5 @@ yarn-error.log*
 dist
 dist-ssr
 *.local
+
+.vercel
