@@ -17,6 +17,7 @@ Current Features :
 <li>Following and Unfollowing Users</li>
 <li>Posting Images</li>
 <li>Comment Functionality</li>
+<li>Adding Emojis in  Comments</li>
 <li>Like Functionality on both Posts and Comments</li>
 <li>Getting Suggestions to Follow Users</li>
 <li>Profile Page with User data</li>
