@@ -9,7 +9,7 @@ import ReactTimeAgo from "react-time-ago";
 import Comment from "./Comment";
 import { useRecoilState } from "recoil";
 import { photoDisplayModalState } from "../../atoms/modalAtom";
-
+import Picker, { SKIN_TONE_MEDIUM_LIGHT } from "emoji-picker-react";
 function Comments({ id, postedAt, commentInput }) {
   const {
     user: { username, image, userId },
@@ -33,13 +33,21 @@ function Comments({ id, postedAt, commentInput }) {
     event.preventDefault();
     const commentToSend = comment;
     setComment("");
+    setShowEmojis(false);
     await addComment(id, commentToSend, username, image);
   };
+
+  const [showEmojis, setShowEmojis] = useState(false);
+
   return (
     <div>
       {/* Display Comments */}
       {comments.length > 0 && (
-        <div className={`max-h-[108px] overflow-y-scroll scrollbar-thin scrollbar-thumb-gray-500 ${isopen && ("md:max-h-80 -ml-6")}`}>
+        <div
+          className={`max-h-[108px] overflow-y-scroll scrollbar-thin scrollbar-thumb-gray-500 ${
+            isopen && "-ml-6 md:max-h-80"
+          }`}
+        >
           {comments.map((comment) => (
             <div className="" key={comment.id}>
               <Comment
@@ -58,8 +66,11 @@ function Comments({ id, postedAt, commentInput }) {
       )}
       {/* Comment Input */}
       <div>
-        <form className="flex items-center border-y border-gray-200 px-4">
-          <EmojiHappyIcon className="h-7 w-7 cursor-pointer text-gray-700" />
+        <form className="relative flex items-center border-y border-gray-200 px-4">
+          <EmojiHappyIcon
+            className="h-7 w-7 cursor-pointer text-gray-700"
+            onClick={() => setShowEmojis(!showEmojis)}
+          />
           <input
             type="text"
             placeholder="Add a comment..."
@@ -78,6 +89,25 @@ function Comments({ id, postedAt, commentInput }) {
           >
             Post
           </button>
+          {showEmojis && (
+            <div>
+              <div>
+                <Picker
+                  disableSearchBar={true}
+                  preload={true}
+                  skinTone={SKIN_TONE_MEDIUM_LIGHT}
+                  pickerStyle={{
+                    position: "absolute",
+                    left: "15px",
+                    top: "45px",
+                  }}
+                  onEmojiClick={(event, emojiObject) => {
+                    setComment(comment + emojiObject.emoji);
+                  }}
+                />
+              </div>
+            </div>
+          )}
         </form>
       </div>
       <div className="p-4">
