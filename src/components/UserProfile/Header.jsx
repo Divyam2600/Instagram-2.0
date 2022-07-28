@@ -4,33 +4,26 @@ import {
   ChevronUpIcon,
   DotsHorizontalIcon,
   TagIcon,
-  ViewGridIcon,
-} from "@heroicons/react/outline";
-import PropTypes from "prop-types";
-import React, { useEffect, useState } from "react";
+  ViewGridIcon
+} from '@heroicons/react/outline';
+import PropTypes from 'prop-types';
+import React, { useEffect, useState } from 'react';
 import {
   followersModalState,
   followingModalState,
   suggestionsListState,
-  userEditModal,
-} from "../../atoms/modalAtom";
-import useUser from "../../hooks/use-user";
-import { useRecoilState } from "recoil";
-import { isUserFollowingProfile, toggleFollow } from "../../services/firebase";
-import { userIdState } from "../../atoms/idAtom";
-import SuggestionsList from "./SuggestionsList";
-import { HeadLoader } from "./Loader";
+  userEditModal
+} from '../../atoms/modalAtom';
+import useUser from '../../hooks/use-user';
+import { useRecoilState } from 'recoil';
+import { isUserFollowingProfile, toggleFollow } from '../../services/firebase';
+import { userIdState } from '../../atoms/idAtom';
+import SuggestionsList from './SuggestionsList';
+import { HeadLoader } from './Loader';
 
-function Header({
-  photosCount,
-  profile,
-  followerCount,
-  followingCount,
-  setFollowerCount,
-}) {
+function Header({ photosCount, profile, followerCount, followingCount, setFollowerCount }) {
   const { user } = useUser();
-  const activeButtonFollow =
-    user.username && user.username !== profile.username;
+  const activeButtonFollow = user.username && user.username !== profile.username;
   const [open, setOpen] = useRecoilState(userEditModal);
   const [isopen, setIsOpen] = useRecoilState(followersModalState);
   const [nowOpen, setNowOpen] = useRecoilState(followingModalState);
@@ -39,10 +32,7 @@ function Header({
   const [isFollowingProfile, setIsFollowingProfile] = useState(false);
   useEffect(() => {
     const isLoggedInUserFollowingProfile = async () => {
-      const isFollowing = await isUserFollowingProfile(
-        user.username,
-        profile.userId
-      );
+      const isFollowing = await isUserFollowingProfile(user.username, profile.userId);
       setIsFollowingProfile(!!isFollowing);
     };
     if (user.username && profile.userId) {
@@ -52,15 +42,9 @@ function Header({
   const handleToggleFollow = async () => {
     setIsFollowingProfile((isFollowingProfile) => !isFollowingProfile);
     setFollowerCount({
-      followerCount: isFollowingProfile ? followerCount - 1 : followerCount + 1,
+      followerCount: isFollowingProfile ? followerCount - 1 : followerCount + 1
     });
-    await toggleFollow(
-      isFollowingProfile,
-      user.id,
-      profile.id,
-      profile.userId,
-      user.userId
-    );
+    await toggleFollow(isFollowingProfile, user.id, profile.id, profile.userId, user.userId);
   };
   return !profile.image ? (
     <HeadLoader />
@@ -130,9 +114,7 @@ function Header({
             <p className="whitespace-pre-line pb-2 text-sm">{profile.bio}</p>
             <div className="flex max-w-sm justify-between text-base text-gray-400">
               <p>
-                <span className="text-xl font-semibold text-black">
-                  {photosCount}
-                </span>{" "}
+                <span className="text-xl font-semibold text-black">{photosCount}</span>{' '}
                 {photosCount === 1 ? `Post` : `Posts`}
               </p>
               <p
@@ -141,9 +123,7 @@ function Header({
                   setIsOpen(true), setUserId(profile.id);
                 }}
               >
-                <span className="text-xl font-semibold text-black">
-                  {followerCount}
-                </span>{" "}
+                <span className="text-xl font-semibold text-black">{followerCount}</span>{' '}
                 {followerCount === 1 ? `Follower` : `Followers`}
               </p>
               <p
@@ -152,10 +132,7 @@ function Header({
                   setNowOpen(true), setUserId(profile.id);
                 }}
               >
-                <span className="text-xl font-semibold text-black">
-                  {followingCount}
-                </span>{" "}
-                Following
+                <span className="text-xl font-semibold text-black">{followingCount}</span> Following
               </p>
             </div>
           </div>
@@ -189,9 +166,7 @@ function Header({
         />
         <div className="-mx-6 flex justify-between border-y  px-10 py-2 text-center text-sm font-semibold text-gray-400">
           <p className="flex flex-col">
-            <span className="-mb-1 text-lg font-bold text-black">
-              {photosCount}
-            </span>
+            <span className="-mb-1 text-lg font-bold text-black">{photosCount}</span>
             {photosCount === 1 ? `Post` : `Posts`}
           </p>
           <p
@@ -200,9 +175,7 @@ function Header({
               setIsOpen(true), setUserId(profile.id);
             }}
           >
-            <span className="-mb-1 text-lg font-bold text-black">
-              {followerCount}
-            </span>
+            <span className="-mb-1 text-lg font-bold text-black">{followerCount}</span>
             {followerCount === 1 ? `Follower` : `Followers`}
           </p>
           <p
@@ -211,9 +184,7 @@ function Header({
               setNowOpen(true), setUserId(profile.id);
             }}
           >
-            <span className="-mb-1 text-lg font-bold text-black">
-              {followingCount}
-            </span>
+            <span className="-mb-1 text-lg font-bold text-black">{followingCount}</span>
             Following
           </p>
         </div>
@@ -236,6 +207,6 @@ Header.propTypes = {
     image: PropTypes.string,
     bio: PropTypes.string,
     fullName: PropTypes.string,
-    following: PropTypes.array,
-  }).isRequired,
+    following: PropTypes.array
+  }).isRequired
 };

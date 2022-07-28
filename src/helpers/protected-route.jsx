@@ -1,6 +1,6 @@
-import PropTypes from "prop-types";
-import { Navigate } from "react-router-dom";
-import * as ROUTES from "../constants/routes";
+import PropTypes from 'prop-types';
+import { Navigate } from 'react-router-dom';
+import * as ROUTES from '../constants/routes';
 
 function ProtectedRoutes({ user, children }) {
   if (user) {
@@ -10,7 +10,7 @@ function ProtectedRoutes({ user, children }) {
       <Navigate
         to={{
           pathname: ROUTES.LOGIN,
-          state: { from: location },
+          state: { from: location }
         }}
       />
     );
@@ -22,5 +22,5 @@ export default ProtectedRoutes;
 
 ProtectedRoutes.propTypes = {
   user: PropTypes.object,
-  children: PropTypes.object.isRequired,
+  children: PropTypes.object.isRequired
 };

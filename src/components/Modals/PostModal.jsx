@@ -1,10 +1,10 @@
-import React, { Fragment, useRef, useState } from "react";
-import { useRecoilState } from "recoil";
-import { postModalState } from "../../atoms/modalAtom";
-import { Dialog, Transition } from "@headlessui/react";
-import { CameraIcon, CloudUploadIcon, XIcon } from "@heroicons/react/outline";
-import useUser from "../../hooks/use-user";
-import { addPostsToFirestore } from "../../services/firebase";
+import React, { Fragment, useRef, useState } from 'react';
+import { useRecoilState } from 'recoil';
+import { postModalState } from '../../atoms/modalAtom';
+import { Dialog, Transition } from '@headlessui/react';
+import { CameraIcon, CloudUploadIcon, XIcon } from '@heroicons/react/outline';
+import useUser from '../../hooks/use-user';
+import { addPostsToFirestore } from '../../services/firebase';
 
 function PostModal() {
   const [open, setOpen] = useRecoilState(postModalState);
@@ -13,7 +13,7 @@ function PostModal() {
   const [loading, setLoading] = useState(false);
   const [selectedFile, setSelectedFile] = useState(null);
   const {
-    user: { username, image, userId },
+    user: { username, image, userId }
   } = useUser();
   // to push the post to firebase
   const uploadPost = async () => {
@@ -39,11 +39,7 @@ function PostModal() {
 
   return (
     <Transition.Root show={open} as={Fragment}>
-      <Dialog
-        as="div"
-        className="absolute inset-0 z-[60] overflow-y-auto"
-        onClose={setOpen}
-      >
+      <Dialog as="div" className="absolute inset-0 z-[60] overflow-y-auto" onClose={setOpen}>
         <div className="m-2 flex min-h-screen items-center justify-center px-4 pt-4 pb-20 text-center sm:block sm:p-0 ">
           <Transition.Child
             as={Fragment}
@@ -56,10 +52,7 @@ function PostModal() {
           >
             <Dialog.Overlay className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
           </Transition.Child>
-          <span
-            className="hidden sm:inline-block sm:h-screen sm:align-middle"
-            aria-hidden="true"
-          >
+          <span className="hidden sm:inline-block sm:h-screen sm:align-middle" aria-hidden="true">
             &#8203;
           </span>
           <Transition.Child
@@ -100,21 +93,15 @@ function PostModal() {
                     onClick={() => filePickerRef.current.click()}
                     className="mx-auto flex h-12 w-12 cursor-pointer items-center justify-center rounded-full bg-red-100"
                   >
-                    <CameraIcon
-                      className="h-6 w-6 text-red-600"
-                      aria-hidden="true"
-                    />
+                    <CameraIcon className="h-6 w-6 text-red-600" aria-hidden="true" />
                   </div>
                 )}
                 <div>
                   <div className="mt-3 text-center sm:mt-5">
-                    <Dialog.Title
-                      as="h3"
-                      className="text-lg font-semibold leading-6 text-gray-500"
-                    >
+                    <Dialog.Title as="h3" className="text-lg font-semibold leading-6 text-gray-500">
                       {selectedFile
-                        ? "Note: Click on the Photo to Reselect."
-                        : "Click on the Icon to Select An Image."}
+                        ? 'Note: Click on the Photo to Reselect.'
+                        : 'Click on the Icon to Select An Image.'}
                     </Dialog.Title>
                     <div>
                       <input
@@ -142,7 +129,7 @@ function PostModal() {
                     type="button"
                     disabled={!selectedFile}
                   >
-                    {loading ? "Uploading..." : "Upload Post"}
+                    {loading ? 'Uploading...' : 'Upload Post'}
                   </button>
                 </div>
               </div>

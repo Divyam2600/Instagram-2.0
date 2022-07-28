@@ -1,16 +1,12 @@
-import { useContext, useEffect, useState } from "react";
-import UserContext from "../context/user";
-import {
-  getUserByUserId,
-  getPhotos,
-  activeUserLatestPost,
-} from "../services/firebase";
-import PropTypes from "prop-types";
+import { useContext, useEffect, useState } from 'react';
+import UserContext from '../context/user';
+import { activeUserLatestPost, getPhotos, getUserByUserId } from '../services/firebase';
+import PropTypes from 'prop-types';
 
 function usePhotos({ userId: activeUserId }) {
   const [photos, setPhotos] = useState(null);
   const {
-    user: { uid: userId = "" },
+    user: { uid: userId = '' }
   } = useContext(UserContext);
   useEffect(() => {
     async function getTimelinePhotos() {
@@ -22,10 +18,7 @@ function usePhotos({ userId: activeUserId }) {
       followedUserPhotos.sort((a, b) => b.timestamp - a.timestamp);
       setPhotos(followedUserPhotos);
       if (activeUserId) {
-        const activeUserLatestPhoto = await activeUserLatestPost(
-          userId,
-          activeUserId
-        );
+        const activeUserLatestPhoto = await activeUserLatestPost(userId, activeUserId);
         setPhotos((photos) =>
           activeUserLatestPhoto ? [activeUserLatestPhoto, ...photos] : photos
         );
@@ -40,5 +33,5 @@ function usePhotos({ userId: activeUserId }) {
 export default usePhotos;
 
 usePhotos.propTypes = {
-  activeUserId: PropTypes.string,
+  activeUserId: PropTypes.string
 };

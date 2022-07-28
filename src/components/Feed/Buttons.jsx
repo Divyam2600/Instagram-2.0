@@ -1,21 +1,16 @@
-import React, { useContext, useState } from "react";
-import {
-  BookmarkIcon,
-  ChatIcon,
-  HeartIcon,
-  PaperAirplaneIcon,
-} from "@heroicons/react/outline";
-import { useRecoilState } from "recoil";
-import { likesModalState } from "../../atoms/modalAtom";
-import { photoIdState } from "../../atoms/idAtom";
-import { HeartIcon as HeartIconFilled } from "@heroicons/react/solid";
-import PropTypes from "prop-types";
-import UserContext from "../../context/user";
-import { updateLikes } from "../../services/firebase";
+import React, { useContext, useState } from 'react';
+import { BookmarkIcon, ChatIcon, HeartIcon, PaperAirplaneIcon } from '@heroicons/react/outline';
+import { useRecoilState } from 'recoil';
+import { likesModalState } from '../../atoms/modalAtom';
+import { photoIdState } from '../../atoms/idAtom';
+import { HeartIcon as HeartIconFilled } from '@heroicons/react/solid';
+import PropTypes from 'prop-types';
+import UserContext from '../../context/user';
+import { updateLikes } from '../../services/firebase';
 
 function Buttons({ id, totalLikes, likedPhoto, handleFocus }) {
   const {
-    user: { uid: userId = "" },
+    user: { uid: userId = '' }
   } = useContext(UserContext);
   const [open, setOpen] = useRecoilState(likesModalState);
   const [photoId, setPhotoId] = useRecoilState(photoIdState);
@@ -39,7 +34,7 @@ function Buttons({ id, totalLikes, likedPhoto, handleFocus }) {
           <button
             onClick={handleToggleLiked}
             onKeyDown={(event) => {
-              if (event.key === "Enter") {
+              if (event.key === 'Enter') {
                 handleToggleLiked();
               }
             }}
@@ -54,7 +49,7 @@ function Buttons({ id, totalLikes, likedPhoto, handleFocus }) {
             className="postButton"
             onClick={handleFocus}
             onKeyDown={(event) => {
-              if (event.key === "Enter") {
+              if (event.key === 'Enter') {
                 handleFocus();
               }
             }}
@@ -64,10 +59,7 @@ function Buttons({ id, totalLikes, likedPhoto, handleFocus }) {
         <BookmarkIcon className="postButton" />
       </div>
       {likes > 0 ? (
-        <p
-          className="-mt-3 cursor-pointer px-5 font-bold"
-          onClick={handleToggleActive}
-        >
+        <p className="-mt-3 cursor-pointer px-5 font-bold" onClick={handleToggleActive}>
           {likes === 1 ? `${likes} like` : `${likes} likes`}
         </p>
       ) : null}
@@ -81,5 +73,5 @@ Buttons.propTypes = {
   id: PropTypes.string.isRequired,
   totalLikes: PropTypes.number,
   likedPhoto: PropTypes.bool.isRequired,
-  handleFocus: PropTypes.func.isRequired,
+  handleFocus: PropTypes.func.isRequired
 };

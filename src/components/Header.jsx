@@ -1,19 +1,19 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from 'react';
 import {
-  SearchIcon,
-  PlusCircleIcon,
-  PaperAirplaneIcon,
   HomeIcon,
-  LogoutIcon,
   LoginIcon,
-} from "@heroicons/react/outline";
-import UserContext from "../context/user";
-import * as ROUTES from "../constants/routes";
-import { Link } from "react-router-dom";
-import { getAuth, signOut } from "firebase/auth";
-import { useRecoilState } from "recoil";
-import { postModalState, searchBarModalState } from "../atoms/modalAtom";
-import useUser from "../hooks/use-user";
+  LogoutIcon,
+  PaperAirplaneIcon,
+  PlusCircleIcon,
+  SearchIcon
+} from '@heroicons/react/outline';
+import UserContext from '../context/user';
+import * as ROUTES from '../constants/routes';
+import { Link } from 'react-router-dom';
+import { getAuth, signOut } from 'firebase/auth';
+import { useRecoilState } from 'recoil';
+import { postModalState, searchBarModalState } from '../atoms/modalAtom';
+import useUser from '../hooks/use-user';
 
 function Header() {
   const { user } = useContext(UserContext);
@@ -21,16 +21,13 @@ function Header() {
   const [isOpen, setIsOpen] = useRecoilState(searchBarModalState);
   const auth = getAuth();
   const {
-    user: { username, image },
+    user: { username, image }
   } = useUser();
   return (
     <div className="fixed top-0 z-50 w-screen border-b bg-white shadow-sm">
       <div className="mx-auto flex max-w-7xl items-center justify-evenly">
         {/* Left Side */}
-        <Link
-          to={ROUTES.DASHBOARD}
-          className="hidden w-32 cursor-pointer sm:inline-grid"
-        >
+        <Link to={ROUTES.DASHBOARD} className="hidden w-32 cursor-pointer sm:inline-grid">
           <img src="/images/logo.png" alt="Logo" />
         </Link>
         <Link to={ROUTES.DASHBOARD} className="w-12 cursor-pointer sm:hidden">
@@ -38,16 +35,13 @@ function Header() {
         </Link>
         {/* Middle Part */}
         <div className="-mr-1 max-w-[140px] sm:max-w-xs">
-          <div
-            className="relative mt-1 mb-1 rounded-md p-3"
-            onClick={() => setIsOpen(true)}
-          >
+          <div className="relative mt-1 mb-1 rounded-md p-3" onClick={() => setIsOpen(true)}>
             <div className="pointer-events-none absolute inset-y-0 flex items-center pl-3">
               <SearchIcon className="h-5 w-5 text-gray-500" />
             </div>
             <input
               type="text"
-              placeholder="Search"
+              placeholder="Search for a User ..."
               className="block w-full rounded-md border-[2.4px] border-gray-400 bg-gray-100 p-2 pl-10 caret-transparent hover:border-gray-500 focus:outline-none sm:text-base"
             />
           </div>
@@ -65,17 +59,14 @@ function Header() {
                   3
                 </div>
               </div>
-              <PlusCircleIcon
-                onClick={() => setOpen(true)}
-                className="navButton"
-              />
+              <PlusCircleIcon onClick={() => setOpen(true)} className="navButton" />
               <Link to={ROUTES.LOGIN}>
                 <button
                   type="button"
                   aria-label="Log Out"
                   onClick={() => signOut(auth)}
                   onKeyDown={(event) => {
-                    if (event.key === "Enter") {
+                    if (event.key === 'Enter') {
                       signOut(auth);
                     }
                   }}

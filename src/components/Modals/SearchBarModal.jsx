@@ -1,20 +1,18 @@
-import React, { Fragment, useEffect, useState } from "react";
-import { useRecoilState } from "recoil";
-import { searchBarModalState } from "../../atoms/modalAtom";
-import { Combobox, Dialog, Transition } from "@headlessui/react";
-import { SearchIcon } from "@heroicons/react/outline";
-import { getAllUsers } from "../../services/firebase";
-import { useNavigate } from "react-router-dom";
+import React, { Fragment, useEffect, useState } from 'react';
+import { useRecoilState } from 'recoil';
+import { searchBarModalState } from '../../atoms/modalAtom';
+import { Combobox, Dialog, Transition } from '@headlessui/react';
+import { SearchIcon } from '@heroicons/react/outline';
+import { getAllUsers } from '../../services/firebase';
+import { useNavigate } from 'react-router-dom';
 
 function SearchBarModal() {
   const [open, setOpen] = useRecoilState(searchBarModalState);
   const [users, setUsers] = useState([]);
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useState('');
   const navigate = useNavigate();
   const filteredUsers = query
-    ? users.filter((user) =>
-        user.username.toLowerCase().includes(query.toLowerCase())
-      )
+    ? users.filter((user) => user.username.toLowerCase().includes(query.toLowerCase()))
     : [];
   useEffect(() => {
     const fetchUsers = async () => {
@@ -23,30 +21,22 @@ function SearchBarModal() {
     };
     fetchUsers();
     function onKeydown(event) {
-      if (event.key === "k" && (event.metaKey || event.ctrlKey)) {
+      if (event.key === 'k' && (event.metaKey || event.ctrlKey)) {
         setOpen(true);
       } else if (event.escKey) {
         setOpen(false);
       }
     }
-    window.addEventListener("keydown", onKeydown);
+    window.addEventListener('keydown', onKeydown);
     return () => {
-      window.removeEventListener("keydown", onKeydown);
+      window.removeEventListener('keydown', onKeydown);
     };
-  }, [open]);
+  }, [open, setOpen]);
 
   return (
     users && (
-      <Transition.Root
-        show={open}
-        as={Fragment}
-        afterLeave={() => setQuery("")}
-      >
-        <Dialog
-          as="div"
-          className="fixed inset-0 z-[60] overflow-y-auto"
-          onClose={setOpen}
-        >
+      <Transition.Root show={open} as={Fragment} afterLeave={() => setQuery('')}>
+        <Dialog as="div" className="fixed inset-0 z-[60] overflow-y-auto" onClose={setOpen}>
           <div className="m-2 flex min-h-screen items-start justify-center px-4 pt-4 pb-20 text-center sm:p-0">
             <Transition.Child
               as={Fragment}
@@ -59,10 +49,7 @@ function SearchBarModal() {
             >
               <Dialog.Overlay className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
             </Transition.Child>
-            <span
-              className="hidden sm:inline-block sm:h-screen sm:align-middle"
-              aria-hidden="true"
-            >
+            <span className="hidden sm:inline-block sm:h-screen sm:align-middle" aria-hidden="true">
               &#8203;
             </span>
             <Transition.Child
@@ -87,7 +74,7 @@ function SearchBarModal() {
                   <SearchIcon className="h-6 w-6 text-gray-500" />
                   <Combobox.Input
                     className="mt-1 h-12 w-full flex-1 border-none text-base text-gray-900 outline-none placeholder:text-lg placeholder:text-gray-400 focus:ring-0"
-                    placeholder="Search ..."
+                    placeholder="Start your Search ..."
                     onChange={(event) => setQuery(event.target.value)}
                   />
                   <button
@@ -98,16 +85,13 @@ function SearchBarModal() {
                   </button>
                 </div>
                 {filteredUsers.length > 0 && (
-                  <Combobox.Options
-                    static
-                    className="max-h-60 overflow-y-auto py-4"
-                  >
+                  <Combobox.Options static className="max-h-60 overflow-y-auto py-4">
                     {filteredUsers.map((user) => (
                       <Combobox.Option key={user.id} value={user.username}>
                         {({ active }) => (
                           <div
                             className={`flex items-center space-x-4 py-2 px-6 ${
-                              active ? "bg-gray-200 bg-opacity-40" : "bg-white"
+                              active ? 'bg-gray-200 bg-opacity-40' : 'bg-white'
                             }`}
                           >
                             <img
@@ -116,9 +100,7 @@ function SearchBarModal() {
                               alt={user.username}
                             />
                             <p className="flex flex-col">
-                              <span className="font-semibold">
-                                {user.username}
-                              </span>
+                              <span className="font-semibold">{user.username}</span>
                               <span className="-mt-1 font-normal text-gray-500">
                                 {user.fullName}
                               </span>

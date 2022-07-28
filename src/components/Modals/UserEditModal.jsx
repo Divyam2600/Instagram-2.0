@@ -1,30 +1,30 @@
-import React, { Fragment, useRef, useState } from "react";
-import { useRecoilState } from "recoil";
-import { userEditModal } from "../../atoms/modalAtom";
-import { Dialog, Transition } from "@headlessui/react";
-import { CameraIcon, PencilAltIcon, XIcon } from "@heroicons/react/outline";
-import useUser from "../../hooks/use-user";
+import React, { Fragment, useRef, useState } from 'react';
+import { useRecoilState } from 'recoil';
+import { userEditModal } from '../../atoms/modalAtom';
+import { Dialog, Transition } from '@headlessui/react';
+import { CameraIcon, PencilAltIcon, XIcon } from '@heroicons/react/outline';
+import useUser from '../../hooks/use-user';
 import {
   doesUsernameExist,
   updateUserAuthDetails,
   updateUserCommentsDetails,
   updateUserDetails,
-  updateUserPostDetails,
-} from "../../services/firebase";
-import { useNavigate } from "react-router-dom";
+  updateUserPostDetails
+} from '../../services/firebase';
+import { useNavigate } from 'react-router-dom';
 
 function UserEditModal() {
   const [open, setOpen] = useRecoilState(userEditModal);
-  const [editfullName, setFullName] = useState("");
-  const [edituserName, setUserName] = useState("");
+  const [editfullName, setFullName] = useState('');
+  const [edituserName, setUserName] = useState('');
   const [selectedFile, setSelectedFile] = useState(null);
-  const [editBio, setEditBio] = useState("");
+  const [editBio, setEditBio] = useState('');
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
+  const [error, setError] = useState('');
   const {
-    user: { username, fullName, userId, bio, id },
+    user: { username, fullName, userId, bio, id }
   } = useUser();
-  let navigate = useNavigate();
+  const navigate = useNavigate();
   const filePickerRef = useRef(null);
   // to display the image to be posted in the modal
   const addImageToPost = (event) => {
@@ -46,18 +46,13 @@ function UserEditModal() {
       setEditBio(editBio.trim());
       setFullName(editfullName.trim());
       setUserName(edituserName.trim());
-      if (!/^[A-Za-z ]+$/.test(editfullName) && editfullName !== "") {
-        setError("Invalid Name.");
-        setFullName("");
-      } else if (
-        !/^[A-Za-z0-9_.]+$/.test(edituserName) &&
-        edituserName !== ""
-      ) {
-        setError(
-          "Invalid Username. Only alphanumeric characters and '_' and '.' are allowed."
-        );
-        setUserName("");
-      } else if (!usernameExists.length || editfullName !== "") {
+      if (!/^[A-Za-z ]+$/.test(editfullName) && editfullName !== '') {
+        setError('Invalid Name.');
+        setFullName('');
+      } else if (!/^[A-Za-z0-9_.]+$/.test(edituserName) && edituserName !== '') {
+        setError("Invalid Username. Only alphanumeric characters and '_' and '.' are allowed.");
+        setUserName('');
+      } else if (!usernameExists.length || editfullName !== '') {
         setLoading(true);
         setUserName(edituserName.toLowerCase());
         await updateUserPostDetails(username, edituserName, selectedFile);
@@ -84,19 +79,15 @@ function UserEditModal() {
             : document.location.reload();
         }, 4000);
       } else {
-        setUserName("");
-        setError("Username already exists. Please choose another one");
+        setUserName('');
+        setError('Username already exists. Please choose another one');
       }
     }
   };
 
   return (
     <Transition.Root show={open} as={Fragment}>
-      <Dialog
-        as="div"
-        className="fixed inset-0 z-[60] overflow-y-auto"
-        onClose={setOpen}
-      >
+      <Dialog as="div" className="fixed inset-0 z-[60] overflow-y-auto" onClose={setOpen}>
         <div className="m-2 flex min-h-screen items-center  justify-center px-4 pt-4 pb-20 text-center sm:block sm:p-0">
           <Transition.Child
             as={Fragment}
@@ -109,10 +100,7 @@ function UserEditModal() {
           >
             <Dialog.Overlay className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
           </Transition.Child>
-          <span
-            className="hidden sm:inline-block sm:h-screen sm:align-middle"
-            aria-hidden="true"
-          >
+          <span className="hidden sm:inline-block sm:h-screen sm:align-middle" aria-hidden="true">
             &#8203;
           </span>
           <Transition.Child
@@ -131,18 +119,15 @@ function UserEditModal() {
                   setOpen(false),
                     setLoading(false),
                     setSelectedFile(null),
-                    setFullName(""),
-                    setEditBio(""),
-                    setUserName(""),
-                    setError("");
+                    setFullName(''),
+                    setEditBio(''),
+                    setUserName(''),
+                    setError('');
                 }}
               >
                 <XIcon className=" h-6  w-6 cursor-pointer text-gray-300" />
               </button>
-              <div
-                as="h3"
-                className="flex items-center space-x-3 text-xl sm:text-2xl "
-              >
+              <div as="h3" className="flex items-center space-x-3 text-xl sm:text-2xl ">
                 <div className=" flex h-14 w-14 items-center justify-center rounded-full bg-red-100">
                   <PencilAltIcon className="mt-[2px] h-8 w-8 text-red-600" />
                 </div>
@@ -189,9 +174,7 @@ function UserEditModal() {
                       value={editBio}
                       maxLength={200}
                     />
-                    <p className="text-sm text-green-600 ">
-                      {editBio.length} / 200
-                    </p>
+                    <p className="text-sm text-green-600 ">{editBio.length} / 200</p>
                   </div>
                   <div>
                     <p className="mx-1 my-3 text-center text-xl ">
@@ -209,10 +192,7 @@ function UserEditModal() {
                         onClick={() => filePickerRef.current.click()}
                         className="mx-auto flex h-12 w-12 cursor-pointer items-center justify-center rounded-full bg-red-100"
                       >
-                        <CameraIcon
-                          className="h-6 w-6 text-red-600"
-                          aria-hidden="true"
-                        />
+                        <CameraIcon className="h-6 w-6 text-red-600" aria-hidden="true" />
                       </div>
                     )}
                     <div>
@@ -222,8 +202,8 @@ function UserEditModal() {
                           className="text-lg font-semibold leading-6 text-gray-500"
                         >
                           {selectedFile
-                            ? "Note: Click on the Photo to Reselect."
-                            : "Click on the Icon to Select An Image."}
+                            ? 'Note: Click on the Photo to Reselect.'
+                            : 'Click on the Icon to Select An Image.'}
                         </Dialog.Title>
                         <div>
                           <input
@@ -243,7 +223,7 @@ function UserEditModal() {
                         type="button"
                         disabled={error}
                       >
-                        {loading ? "Saving Your Details..." : "Save Details"}
+                        {loading ? 'Saving Your Details...' : 'Save Details'}
                       </button>
                     </div>
                   </div>

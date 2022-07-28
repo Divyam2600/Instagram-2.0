@@ -1,30 +1,20 @@
-import React, { useEffect, useState } from "react";
-import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
-import ReactTimeAgo from "react-time-ago";
-import { useRecoilState } from "recoil";
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
+import ReactTimeAgo from 'react-time-ago';
+import { useRecoilState } from 'recoil';
 
-import { HeartIcon } from "@heroicons/react/outline";
-import { HeartIcon as HeartIconFilled } from "@heroicons/react/solid";
-import { isCommentLiked, likeComment } from "../../services/firebase";
-import { commentLikesModalState } from "../../atoms/modalAtom";
-import { commentIdState, photoIdState } from "../../atoms/idAtom";
+import { HeartIcon } from '@heroicons/react/outline';
+import { HeartIcon as HeartIconFilled } from '@heroicons/react/solid';
+import { isCommentLiked, likeComment } from '../../services/firebase';
+import { commentLikesModalState } from '../../atoms/modalAtom';
+import { commentIdState, photoIdState } from '../../atoms/idAtom';
 
-function Comment({
-  photoId,
-  commentId,
-  userId,
-  username,
-  image,
-  comment,
-  postedAt,
-  totalLikes,
-}) {
+function Comment({ photoId, commentId, userId, username, image, comment, postedAt, totalLikes }) {
   const [toggledLiked, setToggledLiked] = useState(false);
   const [likes, setLikes] = useState(totalLikes);
   const [open, setOpen] = useRecoilState(commentLikesModalState);
-  const [currentCommentId, setCurrentCommentId] =
-    useRecoilState(commentIdState);
+  const [currentCommentId, setCurrentCommentId] = useRecoilState(commentIdState);
   const [currentPhotoId, setCurrentPhotoId] = useRecoilState(photoIdState);
   const likedComment = async () => {
     const result = await isCommentLiked(photoId, commentId, userId);
@@ -61,18 +51,9 @@ function Comment({
             {comment}
           </p>
           <div className=" space-x-4 text-xs text-gray-400">
-            {postedAt && (
-              <ReactTimeAgo
-                date={postedAt.toDate()}
-                locale="en-US"
-                timeStyle="mini"
-              />
-            )}
+            {postedAt && <ReactTimeAgo date={postedAt.toDate()} locale="en-US" timeStyle="mini" />}
             {likes > 0 ? (
-              <p
-                className=" -mt-4 cursor-pointer px-5 font-semibold"
-                onClick={handleToggleActive}
-              >
+              <p className=" -mt-4 cursor-pointer px-5 font-semibold" onClick={handleToggleActive}>
                 {likes === 1 ? `${likes} like` : `${likes} likes`}
               </p>
             ) : null}
@@ -82,7 +63,7 @@ function Comment({
       <button
         onClick={handleToggleLiked}
         onKeyDown={(event) => {
-          if (event.key === "Enter") {
+          if (event.key === 'Enter') {
             handleToggleLiked();
           }
         }}
@@ -107,5 +88,5 @@ Comment.propTypes = {
   image: PropTypes.string.isRequired,
   comment: PropTypes.string.isRequired,
   postedAt: PropTypes.object.isRequired,
-  totalLikes: PropTypes.number,
+  totalLikes: PropTypes.number
 };

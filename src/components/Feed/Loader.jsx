@@ -1,6 +1,6 @@
-import React from "react";
-import Skeleton from "react-loading-skeleton";
-import "react-loading-skeleton/dist/skeleton.css";
+import React from 'react';
+import Skeleton from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
 
 export default function Loader() {
   return (
@@ -14,10 +14,7 @@ export default function Loader() {
       </div>
       {Array.from({ length: 4 }).map((_, i) => (
         <div className=" flex items-center justify-center " key={i}>
-          <div
-            className=" my-5 max-w-[360px] rounded-md border bg-white shadow-md "
-            key={i}
-          >
+          <div className=" my-5 max-w-[360px] rounded-md border bg-white shadow-md " key={i}>
             <div className="flex items-center p-3">
               <Skeleton width={50} height={50} circle={true} />
               <p className="flex-1 pl-4 ">

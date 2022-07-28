@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
-import PropTypes from "prop-types";
-import { HeartIcon, ChatIcon } from "@heroicons/react/solid";
-import { getCommentsLength } from "../../services/firebase";
-import { useRecoilState } from "recoil";
-import { photoDisplayModalState } from "../../atoms/modalAtom";
-import { photoIdState } from "../../atoms/idAtom";
+import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
+import { ChatIcon, HeartIcon } from '@heroicons/react/solid';
+import { getCommentsLength } from '../../services/firebase';
+import { useRecoilState } from 'recoil';
+import { photoDisplayModalState } from '../../atoms/modalAtom';
+import { photoIdState } from '../../atoms/idAtom';
 
 function Photo({ image, photoId, likes }) {
   const [comments, setComments] = useState(0);
@@ -49,5 +49,5 @@ export default Photo;
 Photo.propTypes = {
   image: PropTypes.string.isRequired,
   photoId: PropTypes.string.isRequired,
-  likes: PropTypes.number.isRequired,
+  likes: PropTypes.number.isRequired
 };

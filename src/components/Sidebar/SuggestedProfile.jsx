@@ -1,10 +1,7 @@
-import PropTypes from "prop-types";
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import {
-  updateFollowedUserFollowers,
-  updateLoggedInUserFollowing,
-} from "../../services/firebase";
+import PropTypes from 'prop-types';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { updateFollowedUserFollowers, updateLoggedInUserFollowing } from '../../services/firebase';
 
 function SuggestedProfile({
   profileDocId,
@@ -12,7 +9,7 @@ function SuggestedProfile({
   username,
   userImage,
   profileId,
-  loggedInUserId,
+  loggedInUserId
 }) {
   const [followed, setFollowed] = useState(false);
   async function handleFollowUser() {
@@ -21,9 +18,6 @@ function SuggestedProfile({
     await updateLoggedInUserFollowing(loggedInUserDocId, profileId, false);
     //update the followers array of the user who has been followed
     await updateFollowedUserFollowers(profileDocId, loggedInUserId, false);
-    setTimeout(() => {
-      document.location.reload();
-    }, 5000);
   }
   return !followed ? (
     <div className="mt-3 flex items-center justify-between">
@@ -36,10 +30,7 @@ function SuggestedProfile({
         <h2 className="cursor-pointer text-sm font-semibold">{username}</h2>
         <h3 className="truncate text-xs text-gray-400">New To Instagram</h3>
       </Link>
-      <button
-        className="mb-4 text-xs font-semibold text-blue-500"
-        onClick={handleFollowUser}
-      >
+      <button className="mb-4 text-xs font-semibold text-blue-500" onClick={handleFollowUser}>
         Follow
       </button>
     </div>
@@ -54,5 +45,5 @@ SuggestedProfile.propType = {
   userImage: PropTypes.string.isRequired,
   profileId: PropTypes.string.isRequired,
   loggedInUserId: PropTypes.string.isRequired,
-  loggedInUserDocId: PropTypes.string.isRequired,
+  loggedInUserDocId: PropTypes.string.isRequired
 };

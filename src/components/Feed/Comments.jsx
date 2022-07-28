@@ -1,21 +1,21 @@
-import PropTypes from "prop-types";
-import React, { useEffect, useState } from "react";
-import { EmojiHappyIcon } from "@heroicons/react/outline";
-import { addComment, displayComment } from "../../services/firebase";
-import useUser from "../../hooks/use-user";
-import { getFirestore, onSnapshot } from "firebase/firestore";
-import { firebaseApp } from "../../lib/firebase";
-import ReactTimeAgo from "react-time-ago";
-import Comment from "./Comment";
-import { useRecoilState } from "recoil";
-import { photoDisplayModalState } from "../../atoms/modalAtom";
-import Picker, { SKIN_TONE_MEDIUM_LIGHT } from "emoji-picker-react";
+import PropTypes from 'prop-types';
+import React, { useEffect, useState } from 'react';
+import { EmojiHappyIcon } from '@heroicons/react/outline';
+import { addComment, displayComment } from '../../services/firebase';
+import useUser from '../../hooks/use-user';
+import { getFirestore, onSnapshot } from 'firebase/firestore';
+import { firebaseApp } from '../../lib/firebase';
+import ReactTimeAgo from 'react-time-ago';
+import Comment from './Comment';
+import { useRecoilState } from 'recoil';
+import { photoDisplayModalState } from '../../atoms/modalAtom';
+import Picker, { SKIN_TONE_MEDIUM_LIGHT } from 'emoji-picker-react';
 function Comments({ id, postedAt, commentInput }) {
   const {
-    user: { username, image, userId },
+    user: { username, image, userId }
   } = useUser();
   const [comments, setComments] = useState([]);
-  const [comment, setComment] = useState("");
+  const [comment, setComment] = useState('');
   const db = getFirestore(firebaseApp);
   const [isopen, setIsOpen] = useRecoilState(photoDisplayModalState);
   // realtime update the comments section
@@ -32,7 +32,7 @@ function Comments({ id, postedAt, commentInput }) {
   const sendComment = async (event) => {
     event.preventDefault();
     const commentToSend = comment;
-    setComment("");
+    setComment('');
     setShowEmojis(false);
     await addComment(id, commentToSend, username, image);
   };
@@ -45,7 +45,7 @@ function Comments({ id, postedAt, commentInput }) {
       {comments.length > 0 && (
         <div
           className={`max-h-[108px] overflow-y-scroll scrollbar-thin scrollbar-thumb-gray-500 ${
-            isopen && "-ml-6 md:max-h-80"
+            isopen && '-ml-6 md:max-h-80'
           }`}
         >
           {comments.map((comment) => (
@@ -97,9 +97,9 @@ function Comments({ id, postedAt, commentInput }) {
                   preload={true}
                   skinTone={SKIN_TONE_MEDIUM_LIGHT}
                   pickerStyle={{
-                    position: "absolute",
-                    left: "15px",
-                    top: "45px",
+                    position: 'absolute',
+                    left: '15px',
+                    top: '45px'
                   }}
                   onEmojiClick={(event, emojiObject) => {
                     setComment(comment + emojiObject.emoji);
@@ -127,5 +127,5 @@ export default Comments;
 Comments.propTypes = {
   id: PropTypes.string.isRequired,
   postedAt: PropTypes.object.isRequired,
-  commentInput: PropTypes.object,
+  commentInput: PropTypes.object
 };

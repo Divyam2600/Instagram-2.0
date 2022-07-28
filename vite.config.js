@@ -1,15 +1,15 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
   build: {
-    chunkSizeWarningLimit: 1600,
+    chunkSizeWarningLimit: 1600
   },
   resolve: {
     alias: {
-      'react-query/devtools': 'react-query/es/devtools/index',
-    },
-  },
-})
+      'react-query/devtools': 'react-query/es/devtools/index'
+    }
+  }
+});

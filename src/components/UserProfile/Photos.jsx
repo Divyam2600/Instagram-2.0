@@ -1,6 +1,6 @@
-import React from "react";
-import PropTypes from "prop-types";
-import Photo from "./Photo";
+import React from 'react';
+import PropTypes from 'prop-types';
+import Photo from './Photo';
 
 function Photos({ photos }) {
   return photos.length > 0 ? (
@@ -10,11 +10,7 @@ function Photos({ photos }) {
           key={photo.id}
           className="group relative h-0 w-auto cursor-pointer overflow-hidden py-[75%] px-0 pt-0"
         >
-          <Photo
-            image={photo.imageSrc}
-            photoId={photo.id}
-            likes={photo.likes.length}
-          />
+          <Photo image={photo.imageSrc} photoId={photo.id} likes={photo.likes.length} />
         </div>
       ))}
     </div>
@@ -26,5 +22,5 @@ function Photos({ photos }) {
 export default Photos;
 
 Photos.propTypes = {
-  photos: PropTypes.array.isRequired,
+  photos: PropTypes.array.isRequired
 };

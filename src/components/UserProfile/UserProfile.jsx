@@ -1,8 +1,8 @@
-import React, { useEffect, useReducer } from "react";
-import PropTypes from "prop-types";
-import Header from "./Header";
-import { getPhotosByUsername } from "../../services/firebase";
-import Photos from "./Photos";
+import React, { useEffect, useReducer } from 'react';
+import PropTypes from 'prop-types';
+import Header from './Header';
+import { getPhotosByUsername } from '../../services/firebase';
+import Photos from './Photos';
 
 function UserProfile({ user }) {
   const reducer = (state, newState) => ({ ...state, ...newState });
@@ -10,12 +10,12 @@ function UserProfile({ user }) {
     profile: {},
     photosCollection: [],
     followerCount: 0,
-    followingCount: 0,
+    followingCount: 0
   };
-  const [
-    { profile, photosCollection, followerCount, followingCount },
-    dispatch,
-  ] = useReducer(reducer, initialState);
+  const [{ profile, photosCollection, followerCount, followingCount }, dispatch] = useReducer(
+    reducer,
+    initialState
+  );
   useEffect(() => {
     async function getProfileInfoAndPhotos() {
       const photos = await getPhotosByUsername(user.username);
@@ -23,11 +23,11 @@ function UserProfile({ user }) {
         profile: user,
         photosCollection: photos,
         followerCount: user.followers.length,
-        followingCount: user.following.length,
+        followingCount: user.following.length
       });
     }
     getProfileInfoAndPhotos();
-  }, [user.username]);
+  }, [user, user.username]);
 
   return (
     <div>
@@ -55,6 +55,6 @@ UserProfile.propTypes = {
     emailAddress: PropTypes.string.isRequired,
     followers: PropTypes.array.isRequired,
     following: PropTypes.array.isRequired,
-    dateCreated: PropTypes.number.isRequired,
-  }),
+    dateCreated: PropTypes.number.isRequired
+  })
 };

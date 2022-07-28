@@ -1,11 +1,11 @@
-import { DotsHorizontalIcon, TrashIcon } from "@heroicons/react/outline";
-import PropTypes from "prop-types";
-import React from "react";
-import { Link } from "react-router-dom";
-import { Fragment } from "react";
-import { Menu, Transition } from "@headlessui/react";
-import useUser from "../../hooks/use-user";
-import { deletePost } from "../../services/firebase";
+import { DotsHorizontalIcon, TrashIcon } from '@heroicons/react/outline';
+import PropTypes from 'prop-types';
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { Fragment } from 'react';
+import { Menu, Transition } from '@headlessui/react';
+import useUser from '../../hooks/use-user';
+import { deletePost } from '../../services/firebase';
 
 function Header({ id, username, userImage }) {
   const deletePhoto = async () => {
@@ -13,7 +13,7 @@ function Header({ id, username, userImage }) {
     document.location.reload();
   };
   const {
-    user: { username: activeUsername, userId },
+    user: { username: activeUsername, userId }
   } = useUser();
   return (
     <div className="flex items-center p-3">
@@ -22,10 +22,7 @@ function Header({ id, username, userImage }) {
         alt={username}
         className="mr-3 h-14 w-14 rounded-full border-2 border-gray-300 object-cover p-[2px] text-center"
       />
-      <Link
-        to={`/profile/${username}`}
-        className="flex-1 font-semibold text-gray-800"
-      >
+      <Link to={`/profile/${username}`} className="flex-1 font-semibold text-gray-800">
         <p>{username}</p>
       </Link>
       <Menu as="div" className="relative inline-block text-left">
@@ -68,5 +65,5 @@ export default Header;
 Header.propTypes = {
   id: PropTypes.string,
   username: PropTypes.string.isRequired,
-  userImage: PropTypes.string.isRequired,
+  userImage: PropTypes.string.isRequired
 };

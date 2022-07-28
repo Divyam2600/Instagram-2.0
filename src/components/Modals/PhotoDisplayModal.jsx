@@ -1,22 +1,16 @@
-import React, {
-  Fragment,
-  useContext,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
-import { useRecoilState } from "recoil";
-import { photoDisplayModalState } from "../../atoms/modalAtom";
-import { photoIdState } from "../../atoms/idAtom";
-import { Dialog, Transition } from "@headlessui/react";
-import { XIcon } from "@heroicons/react/outline";
-import { getPhoto } from "../../services/firebase";
-import Header from "../Feed/Header";
-import Image from "../Feed/Image";
-import Buttons from "../Feed/Buttons";
-import Captions from "../Feed/Captions";
-import Comments from "../Feed/Comments";
-import UserContext from "../../context/user";
+import React, { Fragment, useContext, useEffect, useRef, useState } from 'react';
+import { useRecoilState } from 'recoil';
+import { photoDisplayModalState } from '../../atoms/modalAtom';
+import { photoIdState } from '../../atoms/idAtom';
+import { Dialog, Transition } from '@headlessui/react';
+import { XIcon } from '@heroicons/react/outline';
+import { getPhoto } from '../../services/firebase';
+import Header from '../Feed/Header';
+import Image from '../Feed/Image';
+import Buttons from '../Feed/Buttons';
+import Captions from '../Feed/Captions';
+import Comments from '../Feed/Comments';
+import UserContext from '../../context/user';
 
 function PhotoDisplayModal() {
   const [open, setOpen] = useRecoilState(photoDisplayModalState);
@@ -25,7 +19,7 @@ function PhotoDisplayModal() {
   const handleFocus = () => commentInput.current.focus();
   const commentInput = useRef(null);
   const {
-    user: { uid: userId = "" },
+    user: { uid: userId = '' }
   } = useContext(UserContext);
   useEffect(() => {
     if (open) {
@@ -37,17 +31,13 @@ function PhotoDisplayModal() {
         photoObject();
       }
     } else {
-      setPhotoId("");
+      setPhotoId('');
       setPhoto(null);
     }
-  }, [photoId, open]);
+  }, [photoId, open, setPhotoId, userId]);
   return (
     <Transition.Root show={open} as={Fragment}>
-      <Dialog
-        as="div"
-        className="fixed inset-0 z-[60] overflow-y-auto"
-        onClose={setOpen}
-      >
+      <Dialog as="div" className="fixed inset-0 z-[60] overflow-y-auto" onClose={setOpen}>
         <div className="m-2 flex min-h-screen items-center  justify-center px-4 pt-4 pb-20 text-center sm:block sm:p-0">
           <Transition.Child
             as={Fragment}
@@ -60,10 +50,7 @@ function PhotoDisplayModal() {
           >
             <Dialog.Overlay className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
           </Transition.Child>
-          <span
-            className="hidden sm:inline-block sm:h-screen sm:align-middle"
-            aria-hidden="true"
-          >
+          <span className="hidden sm:inline-block sm:h-screen sm:align-middle" aria-hidden="true">
             &#8203;
           </span>
           <Transition.Child
@@ -87,10 +74,7 @@ function PhotoDisplayModal() {
               {photo && (
                 <div className="divide-y md:flex md:space-y-6 md:divide-y-0">
                   <div className="md:-mr-1 md:border-r">
-                    <Header
-                      username={photo.username}
-                      userImage={photo.userImage}
-                    />
+                    <Header username={photo.username} userImage={photo.userImage} />
                     <Image src={photo.imageSrc} caption={photo.caption} />
                     <Buttons
                       id={photoId}
@@ -98,17 +82,10 @@ function PhotoDisplayModal() {
                       likedPhoto={photo.userLikedPhoto}
                       handleFocus={handleFocus}
                     />
-                    <Captions
-                      caption={photo.caption}
-                      username={photo.username}
-                    />
+                    <Captions caption={photo.caption} username={photo.username} />
                   </div>
                   <div className="items-end md:ml-1 md:flex">
-                    <Comments
-                      id={photoId}
-                      postedAt={photo.timestamp}
-                      commentInput={commentInput}
-                    />
+                    <Comments id={photoId} postedAt={photo.timestamp} commentInput={commentInput} />
                   </div>
                 </div>
               )}
