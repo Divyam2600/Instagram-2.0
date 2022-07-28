@@ -69,7 +69,7 @@ function Header({
       <div className="flex max-w-sm justify-evenly md:max-w-none md:py-2">
         <img
           src={profile.image}
-          alt=""
+          alt={profile.username}
           className="ml-4 mr-4 h-24 w-24 rounded-full object-cover sm:h-32 sm:w-32 md:h-40  md:w-40"
         />
         <div className="mr-2 flex flex-col space-y-3 md:ml-5">

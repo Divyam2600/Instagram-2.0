@@ -14,6 +14,7 @@ import { getAuth, signOut } from "firebase/auth";
 import { useRecoilState } from "recoil";
 import { postModalState, searchBarModalState } from "../atoms/modalAtom";
 import useUser from "../hooks/use-user";
+
 function Header() {
   const { user } = useContext(UserContext);
   const [open, setOpen] = useRecoilState(postModalState);
@@ -24,23 +25,16 @@ function Header() {
   } = useUser();
   return (
     <div className="fixed top-0 z-50 w-screen border-b bg-white shadow-sm">
-      <div className="mx-3 flex max-w-7xl items-center justify-evenly lg:-mx-3 xl:mx-auto">
+      <div className="mx-auto flex max-w-7xl items-center justify-evenly">
         {/* Left Side */}
         <Link
           to={ROUTES.DASHBOARD}
-          className="relative hidden w-32 cursor-pointer sm:inline-grid"
+          className="hidden w-32 cursor-pointer sm:inline-grid"
         >
-          <img src="/images/logo.png" alt="Logo" className=" object-contain" />
+          <img src="/images/logo.png" alt="Logo" />
         </Link>
-        <Link
-          to={ROUTES.DASHBOARD}
-          className="opacity-8 relative h-12 w-12 flex-shrink-0 cursor-pointer sm:hidden"
-        >
-          <img
-            src="/images/logo-icon.png"
-            alt="Logo"
-            className=" object-contain "
-          />
+        <Link to={ROUTES.DASHBOARD} className="w-12 cursor-pointer sm:hidden">
+          <img src="/images/logo-icon.png" alt="Logo" />
         </Link>
         {/* Middle Part */}
         <div className="-mr-1 max-w-[140px] sm:max-w-xs">
@@ -54,7 +48,7 @@ function Header() {
             <input
               type="text"
               placeholder="Search"
-              className="block caret-transparent w-full rounded-md border-[2.4px] border-gray-400 bg-gray-100 p-2 pl-10 hover:border-gray-500 focus:outline-none sm:text-base"
+              className="block w-full rounded-md border-[2.4px] border-gray-400 bg-gray-100 p-2 pl-10 caret-transparent hover:border-gray-500 focus:outline-none sm:text-base"
             />
           </div>
         </div>
@@ -93,7 +87,7 @@ function Header() {
                 <Link to={`/profile/${username}`}>
                   <img
                     src={image}
-                    alt=""
+                    alt={username}
                     className="mt-1 h-10 w-10 rounded-full border-2 border-gray-200 object-cover p-[1px]"
                   />
                 </Link>
@@ -104,7 +98,7 @@ function Header() {
               to={ROUTES.LOGIN}
               className="mt-[6px] flex items-center space-x-2 rounded-md p-2 text-lg font-semibold transition ease-in hover:bg-gray-300 hover:bg-opacity-50 sm:mt-[1px]"
             >
-              <LoginIcon className="navButton  " />
+              <LoginIcon className="navButton" />
               <span>Log In</span>
             </Link>
           )}

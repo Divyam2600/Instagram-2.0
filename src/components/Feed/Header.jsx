@@ -13,13 +13,13 @@ function Header({ id, username, userImage }) {
     document.location.reload();
   };
   const {
-    user: { username: activeUsername , userId},
+    user: { username: activeUsername, userId },
   } = useUser();
   return (
     <div className="flex items-center p-3">
       <img
         src={userImage}
-        alt={`${username}`}
+        alt={username}
         className="mr-3 h-14 w-14 rounded-full border-2 border-gray-300 object-cover p-[2px] text-center"
       />
       <Link
@@ -66,7 +66,7 @@ function Header({ id, username, userImage }) {
 export default Header;
 
 Header.propTypes = {
-  id:PropTypes.string,
+  id: PropTypes.string,
   username: PropTypes.string.isRequired,
   userImage: PropTypes.string.isRequired,
 };

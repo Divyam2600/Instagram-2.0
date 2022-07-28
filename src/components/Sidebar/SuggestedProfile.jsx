@@ -29,7 +29,7 @@ function SuggestedProfile({
     <div className="mt-3 flex items-center justify-between">
       <img
         src={userImage}
-        alt={`${username}`}
+        alt={username}
         className="h-12 w-12 cursor-pointer rounded-full border-2 border-gray-300 object-cover p-[2px]"
       />
       <Link to={`/profile/${username}`} className="ml-4 mr-2 flex-1">

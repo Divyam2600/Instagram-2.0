@@ -78,7 +78,7 @@ function FollowersModal() {
                   <div className="flex items-center" key={user.id}>
                     <img
                       src={user.image}
-                      alt={`${user?.username}`}
+                      alt={user.username}
                       className="rounded-full w-14 h-14 object-cover border-2 border-gray-300 p-[2px] text-center mr-3"
                     />
                     <Dialog.Title as="h3" className="font-bold text-gray-800">

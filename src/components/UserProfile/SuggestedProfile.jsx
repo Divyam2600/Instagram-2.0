@@ -28,7 +28,7 @@ function SuggestedProfile({
       <div className="border flex w-44 flex-col p-4 items-center space-y-2 rounded-lg bg-gray-100 bg-opacity-30">
         <img
           src={userImage}
-          alt={`${username}`}
+          alt={username}
           className="rounded-full cursor-pointer h-20 w-20 border"
         />
         <Link to={`/profile/${username}`} className="text-center">

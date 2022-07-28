@@ -1,26 +1,13 @@
 import { ChevronDoubleUpIcon } from "@heroicons/react/outline";
-import React, {useState } from "react";
+import React from "react";
 
 function TopScroll() {
-  const [visible, setVisible] = useState(false);
-  const scrolled = document.documentElement.scrollTop;
-
-  const toggleVisible = () => {
-    if (scrolled > 300) {
-      setVisible(true);
-    } else if (scrolled <= 300) {
-      setVisible(false);
-    }
-  };
   function scrollToTop() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
-  window.addEventListener("scroll", toggleVisible);
   return (
     <button
-      className={`fixed bottom-2 right-6 z-[60] flex h-10 w-10 animate-bounce items-center justify-center rounded-full bg-rose-500 bg-opacity-80 shadow-md transition ease-in hover:bg-opacity-100 ${
-        visible ? "inline" : "invisible"
-      }`}
+      className="fixed bottom-2 right-6 z-[60] flex h-10 w-10 animate-bounce items-center justify-center rounded-full bg-rose-500 bg-opacity-80 shadow-md transition ease-in hover:bg-opacity-100"
       onClick={scrollToTop}
       role="button"
       aria-label="Scroll to Top"

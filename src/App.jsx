@@ -7,7 +7,7 @@ import ProtectedRoutes from "./helpers/protected-route";
 
 const Login = lazy(() => import("./pages/login"));
 const SignUp = lazy(() => import("./pages/sign-up"));
-const NotFound = lazy(() => import("./pages/not-found"));
+const NotFound = lazy(() => import("./pages/_error.page"));
 const Dashboard = lazy(() => import("./pages/dashboard"));
 const Profile = lazy(() => import("./pages/profile"));
 
@@ -18,11 +18,11 @@ function App() {
       <Router>
         <Suspense
           fallback={
-            <div className="flex justify-center items-center h-screen flex-col">
+            <div className="flex h-screen flex-col items-center justify-center">
               <img
-                className=" w-16 h-16 opacity-25"
+                className=" h-16 w-16 animate-pulse opacity-25"
                 src="/images/logo-icon.png"
-                alt=""
+                alt="Logo"
               />
             </div>
           }

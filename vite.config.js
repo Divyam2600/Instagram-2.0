@@ -7,4 +7,9 @@ export default defineConfig({
   build: {
     chunkSizeWarningLimit: 1600,
   },
+  resolve: {
+    alias: {
+      'react-query/devtools': 'react-query/es/devtools/index',
+    },
+  },
 })

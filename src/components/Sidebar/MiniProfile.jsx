@@ -13,7 +13,7 @@ function MiniProfile({ username, fullName, image }) {
     >
       <img
         src={image}
-        alt={`${username}`}
+        alt={username}
         className="h-14 w-14 rounded-full border-2 p-[2px] border-gray-300 cursor-pointer object-cover text-center"
       />
       <div className="flex-1 mx-4 text-sm">
