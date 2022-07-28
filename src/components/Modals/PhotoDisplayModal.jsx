@@ -42,10 +42,7 @@ function PhotoDisplayModal() {
     }
   }, [photoId, open]);
   return (
-    <Transition.Root
-      show={open}
-      as={Fragment}
-    >
+    <Transition.Root show={open} as={Fragment}>
       <Dialog
         as="div"
         className="fixed inset-0 z-[60] overflow-y-auto"
@@ -78,9 +75,9 @@ function PhotoDisplayModal() {
             leaveFrom="opacity-100 translate-y-0 sm:scale-100"
             leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
           >
-            <div className="inline-block w-full max-w-sm transform space-y-4 overflow-hidden rounded-lg bg-white text-left align-bottom shadow-xl transition-all sm:my-8 sm:align-middle md:max-w-2xl">
-            <button
-                className="float-right p-2 -ml-8 cursor-pointer outline-none "
+            <div className="inline-block w-full max-w-sm transform space-y-4 overflow-hidden rounded-lg bg-white text-left align-bottom shadow-xl transition-all sm:my-8 sm:align-middle md:max-w-2xl ">
+              <button
+                className="float-right -ml-8 cursor-pointer p-2 outline-none "
                 onClick={() => {
                   setOpen(false), setPhoto(null);
                 }}
@@ -88,31 +85,31 @@ function PhotoDisplayModal() {
                 <XIcon className=" h-6 w-6 text-gray-300" />
               </button>
               {photo && (
-                <div className="divide-y md:flex md:divide-y-0 md:space-y-6">
+                <div className="divide-y md:flex md:space-y-6 md:divide-y-0">
                   <div className="md:-mr-1 md:border-r">
                     <Header
                       username={photo.username}
                       userImage={photo.userImage}
                     />
                     <Image src={photo.imageSrc} caption={photo.caption} />
-                      <Buttons
-                        id={photoId}
-                        totalLikes={photo.likes?.length}
-                        likedPhoto={photo.userLikedPhoto}
-                        handleFocus={handleFocus}
-                      />
-                      <Captions
-                        caption={photo.caption}
-                        username={photo.username}
-                      />
+                    <Buttons
+                      id={photoId}
+                      totalLikes={photo.likes?.length}
+                      likedPhoto={photo.userLikedPhoto}
+                      handleFocus={handleFocus}
+                    />
+                    <Captions
+                      caption={photo.caption}
+                      username={photo.username}
+                    />
                   </div>
-                    <div className="items-end md:ml-1 md:flex">
-                      <Comments
-                        id={photoId}
-                        postedAt={photo.timestamp}
-                        commentInput={commentInput}
-                      />
-                    </div>
+                  <div className="items-end md:ml-1 md:flex">
+                    <Comments
+                      id={photoId}
+                      postedAt={photo.timestamp}
+                      commentInput={commentInput}
+                    />
+                  </div>
                 </div>
               )}
             </div>

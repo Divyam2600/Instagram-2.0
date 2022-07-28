@@ -359,12 +359,12 @@ export async function activeUserLatestPost(userId, activeUserId) {
   const latestPhoto = activeUserPhotos[0];
   // checks if the logged in user already likes that post or not
   let userLikedPhoto = false;
-  latestPhoto.likes?.map((res) => {
+  latestPhoto?.likes?.map((res) => {
     if (res === userId) {
       userLikedPhoto = true;
     }
   });
-  return { ...latestPhoto, userLikedPhoto };
+  return latestPhoto ? { ...latestPhoto, userLikedPhoto } : null;
 }
 
 // update the like count of the comment

@@ -26,7 +26,9 @@ function usePhotos({ userId: activeUserId }) {
           userId,
           activeUserId
         );
-        setPhotos((photos) => [activeUserLatestPhoto, ...photos]);
+        setPhotos((photos) =>
+          activeUserLatestPhoto ? [activeUserLatestPhoto, ...photos] : photos
+        );
       }
     }
     getTimelinePhotos();
@@ -39,4 +41,4 @@ export default usePhotos;
 
 usePhotos.propTypes = {
   activeUserId: PropTypes.string,
-}
+};

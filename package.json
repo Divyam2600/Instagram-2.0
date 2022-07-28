@@ -4,8 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "vite --host",
-    "build": "vite build",
-    "preview": "vite preview"
+    "build": "vite build --watch"
   },
   "dependencies": {
     "@headlessui/react": "^1.6.6",
