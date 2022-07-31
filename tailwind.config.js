@@ -1,23 +1,19 @@
 module.exports = {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
-    screens: {
-      xxs: { max: '420px' },
-      xs: { max: '520px' },
-      sm: '640px',
-      md: '768px',
-      lg: '1024px',
-      xl: '1280px',
-      '2xl': '1536px'
+    extend: {
+      screen: {
+        xxs: { max: '420px' },
+        xs: { max: '520px' }
+      },
+      rotate: {
+        30: '30deg',
+        50: '50deg',
+        60: '60deg'
+      },
+      borderRadius: ['last', 'first']
     },
-    extend: {},
-    rotate: {
-      30: '30deg',
-      45: '45deg',
-      50: '50deg',
-      60: '60deg',
-      90: '90deg'
-    },
+
     linearBorderGradients: {
       directions: {
         // the default values

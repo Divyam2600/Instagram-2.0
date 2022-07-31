@@ -5,13 +5,13 @@
 
 @layer components {
   .navButton {
-    @apply h-7 w-7 cursor-pointer text-gray-600 transition-all duration-150 ease-out hover:scale-125 sm:inline-flex sm:h-8 sm:w-8;
+    @apply h-7 w-7 cursor-pointer text-gray-600 transition-all duration-150 ease-in-out hover:scale-125 active:scale-90 sm:inline-flex sm:h-8 sm:w-8;
   }
   .input {
     @apply mx-4 mb-2 h-2 w-11/12 rounded-md border-[2.4px] border-gray-300 bg-gray-400 bg-opacity-5 py-6 px-4 text-lg text-black hover:border-gray-500 focus:outline-none;
   }
   .submit {
-    @apply mx-4 my-3 w-11/12 items-center justify-center rounded-md border bg-sky-500 py-2 text-center text-lg font-semibold text-white;
+    @apply mx-4 my-3 w-11/12 items-center justify-center rounded-md border bg-sky-500 py-2 text-center text-lg font-semibold text-white transition duration-200 ease-in-out hover:scale-110 active:scale-90;
   }
   .grid {
     @apply container mx-auto flex h-screen max-w-screen-md flex-col place-items-center items-center justify-center;
@@ -26,6 +26,15 @@
     @apply mb-4 -mt-4 text-sm font-semibold text-red-500;
   }
   .postButton {
-    @apply h-9 w-9 cursor-pointer text-gray-600 transition-all  duration-150 ease-out hover:scale-125 sm:h-8 sm:w-8;
+    @apply h-9 w-9 cursor-pointer text-gray-600 transition-all  duration-150 ease-in-out hover:scale-125 sm:h-8 sm:w-8;
+  }
+  .message {
+    @apply h-fit w-fit max-w-[70%] whitespace-pre-line rounded-2xl py-1 px-3 sm:max-w-[50%] md:max-w-[40%] border;
+  }
+  .message-container {
+    @apply mb-2 flex w-full items-center space-x-2 px-2 text-xs text-black sm:text-sm;
+  }
+  .message-time {
+    @apply -mb-[2px] self-end text-[10px] leading-4 tracking-tight text-gray-400;
   }
 }

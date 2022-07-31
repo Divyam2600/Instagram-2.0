@@ -442,3 +442,56 @@ export async function getPhoto(photoId, userId) {
   });
   return { ...result.data(), userLikedPhoto };
 }
+
+// create a message database with all the users beforehand whom the user is following
+export async function createUserMessage(activeUserId, followingUserId) {
+  const messageRef = collection(db, 'messages');
+  // fetch all chat docs from the collection where active user's id is present
+  const activeUserMessageQuery = query(messageRef, where('users', 'array-contains', activeUserId));
+  const result = await getDocs(activeUserMessageQuery);
+  // returns true if the chat doc already exists with the user to be added else false
+  const chatAlreadyExists = (followingUserId) =>
+    !!result?.docs.find(
+      (chat) => chat.data().users.find((user) => user === followingUserId)?.length > 0
+    );
+  //if chat doesn't exists then add it to the database
+  if (!chatAlreadyExists(followingUserId)) {
+    await addDoc(messageRef, {
+      users: [activeUserId, followingUserId]
+    });
+  }
+  let messageId = '';
+  result.docs.map((chat) => {
+    if (chat.data().users.includes(followingUserId)) {
+      messageId = chat.id;
+    }
+  });
+  return { messageId, followingUserId };
+}
+
+// to get the chats between the users whose message id is passed
+export function getChats(messageId) {
+  const chatRef = collection(db, 'messages', messageId, 'chats');
+  return query(chatRef, orderBy('sentAt', 'desc'));
+}
+
+export async function addChat(messageId, username, image, id, message) {
+  const userRef = doc(db, 'users', id);
+  await updateDoc(userRef, {
+    lastSeen: serverTimestamp()
+  });
+  const messageRef = doc(db, 'messages', messageId);
+  const chatRef = collection(messageRef, 'chats');
+  await addDoc(chatRef, {
+    message: message,
+    sender: username,
+    image: image,
+    sentAt: serverTimestamp()
+  });
+}
+
+// get user from the firestore with the username
+export function getUserLastSeen(username) {
+  const usersRef = collection(db, 'users');
+  return query(usersRef, where('username', '==', username));
+}
