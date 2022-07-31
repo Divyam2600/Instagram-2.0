@@ -26,8 +26,11 @@ Current Features :
 <li>Responsive Popup Modals for: Likes, Followings, Followers, UserEdit Details </li>
 <li>Updating Profile Deatils and Image</li>
 <li>Photo Popup Modal in Profile Page</li>
-<li>Delete Post functionality for the owner</li>
+<li>Delete Post functionality for the Owner</li>
+<li>One to One Private Messaging functionality with Users in Following</li>
+<li>Active Inactive Status of Users in Message</li>
 <li>Protected Routes</li>
+<li>Progress Bar on Route Change</li>
 <br/>
 
 ## Vite + React.js + Tailwind CSS
