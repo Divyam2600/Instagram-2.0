@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { createUserWithEmailAndPassword, getAuth, updateProfile } from 'firebase/auth';
 import { doesUsernameExist } from '../services/firebase';
-import { addDoc, collection, getFirestore } from 'firebase/firestore';
+import { addDoc, collection, getFirestore, serverTimestamp } from 'firebase/firestore';
 import { firebaseApp } from '../lib/firebase';
 import * as ROUTES from '../constants/routes';
 
@@ -54,7 +54,8 @@ function SignUp() {
           followers: [],
           dateCreated: Date.now(),
           image: '/images/default.png',
-          bio: ''
+          bio: '',
+          lastSeen: serverTimestamp()
         });
         navigate(ROUTES.LOGIN);
       } catch (error) {
@@ -113,6 +114,7 @@ function SignUp() {
           <form method="POST" onSubmit={handleSignUp}>
             <input
               type="text"
+              autoComplete="name"
               required
               aria-label="Enter Your Full Name"
               placeholder="Full Name"
@@ -124,6 +126,7 @@ function SignUp() {
             />
             <input
               type="text"
+              autoComplete="username"
               required
               aria-label="Enter Your Username"
               placeholder="Username"
@@ -135,6 +138,7 @@ function SignUp() {
             />
             <input
               type="email"
+              autoComplete="email"
               required
               aria-label="Enter Your Email Address"
               placeholder="Email Address"
@@ -146,6 +150,7 @@ function SignUp() {
             />
             <input
               type="password"
+              autoComplete="new-password"
               required
               aria-label="Enter Your Password"
               placeholder="Password"
@@ -157,6 +162,7 @@ function SignUp() {
             />
             <input
               type="password"
+              autoComplete="new-password"
               required
               aria-label="Confirm Your Password"
               placeholder="Confirm Password"

@@ -78,6 +78,7 @@ function Login() {
           <form method="POST" onSubmit={handleLogin}>
             <input
               type="email"
+              autoComplete="email"
               required
               value={emailAddress}
               aria-label="Enter Your Email Address"
@@ -89,6 +90,7 @@ function Login() {
             />
             <input
               type="password"
+              autoComplete="current-password"
               required
               aria-label="Enter Your Password"
               placeholder="Password"
