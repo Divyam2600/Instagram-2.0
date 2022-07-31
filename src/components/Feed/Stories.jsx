@@ -11,18 +11,16 @@ function Stories({ activeUserId, following }) {
       following.map(async (userId) => {
         //to fetch the user's data whom the user is Following
         const otherUsers = await getUserByUserId(userId);
-        otherUsers.map((res) => {
-          setUsers((users) => [...users, res]);
-        });
+        setUsers((users) => [...users, otherUsers[0]]);
       });
       const activeUser = await getUserByUserId(activeUserId);
       setUsers((users) => [activeUser[0], ...users]);
     };
-    // to show the list of users whom the user is Following if his userId is present
-    if (activeUserId) {
+    // to allow rendering of userlist only once when user array length is less than following length
+    if (users.length < following.length) {
       getUsers();
     }
-  }, [activeUserId, following]);
+  }, [activeUserId, following, users.length]);
 
   return (
     following && (

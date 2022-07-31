@@ -40,10 +40,10 @@ function SearchBarModal() {
           <div className="m-2 flex min-h-screen items-start justify-center px-4 pt-4 pb-20 text-center sm:p-0">
             <Transition.Child
               as={Fragment}
-              enter="ease-out duration-500"
+              enter="ease-in-out duration-500"
               enterFrom="opactiy-0"
               enterTo="opacity-100"
-              leave="ease-in duration-200"
+              leave="ease-in-out duration-200"
               leaveFrom="opacity-100"
               leaveTo="opacity-0"
             >
@@ -54,10 +54,10 @@ function SearchBarModal() {
             </span>
             <Transition.Child
               as={Fragment}
-              enter="ease-out duration-500"
+              enter="ease-in-out duration-500"
               enterFrom="opactiy-0 translate-y-4 sm:translate-y-0 sm:scale-95"
               enterTo="opacity-100 translate-y-0 sm:scale-100"
-              leave="ease-in duration-200"
+              leave="ease-in-out duration-200"
               leaveFrom="opacity-100 translate-y-0 sm:scale-100"
               leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
             >

@@ -54,7 +54,7 @@ function Header({ photosCount, profile, followerCount, followingCount, setFollow
         <img
           src={profile.image}
           alt={profile.username}
-          className="ml-4 mr-4 h-24 w-24 rounded-full object-cover sm:h-32 sm:w-32 md:h-40  md:w-40"
+          className="mx-4 h-24 w-24 rounded-full object-cover sm:h-32 sm:w-32 md:h-40 md:w-40"
         />
         <div className="mr-2 flex flex-col space-y-3 md:ml-5">
           <div className="flex flex-col space-y-2 md:flex-row md:space-x-4 md:space-y-0">
@@ -86,7 +86,7 @@ function Header({ photosCount, profile, followerCount, followingCount, setFollow
               ) : (
                 //
                 <button
-                  className="text-md w-48 rounded-md border-2 border-gray-200 bg-white py-1 font-semibold text-black hover:bg-gray-200 hover:bg-opacity-40 xxs:w-44"
+                  className="text-md xxs:w-44 w-48 rounded-md border-2 border-gray-200 bg-white py-1 font-semibold text-black hover:bg-gray-200 hover:bg-opacity-40"
                   type="button"
                   onClick={() => setOpen(true)}
                 >
@@ -146,13 +146,13 @@ function Header({ photosCount, profile, followerCount, followingCount, setFollow
         />
       </div>
       <div className="hidden justify-between border-y px-20 pb-1 text-center text-lg font-semibold text-gray-700 md:inline-flex">
-        <p className="-mb-1 flex w-16 cursor-pointer flex-col items-center py-1 transition ease-in hover:border-t-2 hover:border-gray-700">
+        <p className="-mb-1 flex w-16 cursor-pointer flex-col items-center py-1 transition ease-in-out hover:border-t-2 hover:border-gray-700">
           <ViewGridIcon className="-mb-1 h-7 w-7 text-gray-400" /> Posts
         </p>
-        <p className="-mb-1 flex w-20 cursor-pointer flex-col items-center py-1 transition ease-in hover:border-t-2 hover:border-gray-700">
+        <p className="-mb-1 flex w-20 cursor-pointer flex-col items-center py-1 transition ease-in-out hover:border-t-2 hover:border-gray-700">
           <TagIcon className="-mb-1 h-7 w-7 text-gray-400" /> Tagged
         </p>
-        <p className="-mb-1 flex w-16 cursor-pointer flex-col items-center py-1 transition ease-in hover:border-t-2 hover:border-gray-700">
+        <p className="-mb-1 flex w-16 cursor-pointer flex-col items-center py-1 transition ease-in-out hover:border-t-2 hover:border-gray-700">
           <BookmarkIcon className="-mb-1 h-7 w-7 text-gray-400" /> Saved
         </p>
       </div>

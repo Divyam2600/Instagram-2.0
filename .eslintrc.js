@@ -6,8 +6,13 @@ module.exports = {
     jquery: true,
     jest: true
   },
-  extends: ['eslint:recommended', 'plugin:react/recommended', 'plugin:react-hooks/recommended'],
-  parser: 'babel-eslint',
+  extends: [
+    'eslint:recommended',
+    'plugin:react/jsx-runtime',
+    'plugin:react/recommended',
+    'plugin:react-hooks/recommended'
+  ],
+  parser: '@babel/eslint-parser',
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
@@ -16,8 +21,12 @@ module.exports = {
       classes: true,
       modules: true
     },
+    babelOptions: {
+      presets: ['@babel/preset-react']
+    },
     ecmaVersion: 12,
-    sourceType: 'module'
+    sourceType: 'module',
+    requireConfigFile: false
   },
   plugins: ['react', 'prettier', 'react-hooks', 'jsx-a11y', 'unused-imports'],
   rules: {

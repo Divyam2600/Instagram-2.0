@@ -21,7 +21,7 @@ function Header() {
   const [isOpen, setIsOpen] = useRecoilState(searchBarModalState);
   const auth = getAuth();
   const {
-    user: { username, image }
+    user: { username, image, userId }
   } = useUser();
   return (
     <div className="fixed top-0 z-50 w-screen border-b bg-white shadow-sm">
@@ -54,7 +54,9 @@ function Header() {
           {user ? (
             <>
               <div className="relative">
-                <PaperAirplaneIcon className="navButton mb-[6px] rotate-50" />
+                <Link to={`/messages/${userId}`}>
+                  <PaperAirplaneIcon className="navButton mb-[6px] rotate-50" />
+                </Link>
                 <div className="absolute -top-1 -right-1 h-5 w-5 animate-pulse rounded-full bg-red-500 text-center text-sm text-white">
                   3
                 </div>
@@ -87,7 +89,7 @@ function Header() {
           ) : (
             <Link
               to={ROUTES.LOGIN}
-              className="mt-[6px] flex items-center space-x-2 rounded-md p-2 text-lg font-semibold transition ease-in hover:bg-gray-300 hover:bg-opacity-50 sm:mt-[1px]"
+              className="mt-[6px] flex items-center space-x-2 rounded-md p-2 text-lg font-semibold transition ease-in-out hover:bg-gray-300 hover:bg-opacity-50 sm:mt-[1px]"
             >
               <LoginIcon className="navButton" />
               <span>Log In</span>

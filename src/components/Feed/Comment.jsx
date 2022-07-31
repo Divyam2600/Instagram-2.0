@@ -69,9 +69,9 @@ function Comment({ photoId, commentId, userId, username, image, comment, postedA
         }}
       >
         {toggledLiked ? (
-          <HeartIconFilled className="-mt-3 h-5 w-5 text-red-500 transition-all  duration-150 ease-out hover:scale-125" />
+          <HeartIconFilled className="-mt-3 h-5 w-5 text-red-500 transition-all  duration-150 ease-in-out hover:scale-125" />
         ) : (
-          <HeartIcon className="-mt-3 h-5 w-5 text-gray-400 transition-all  duration-150 ease-out hover:scale-125" />
+          <HeartIcon className="-mt-3 h-5 w-5 text-gray-400 transition-all  duration-150 ease-in-out hover:scale-125" />
         )}
       </button>
     </div>

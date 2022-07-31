@@ -78,7 +78,7 @@ function Comments({ id, postedAt, commentInput }) {
             value={comment}
             aria-label="Add a comment"
             autoComplete="off"
-            onChange={({ target }) => setComment(target.value)}
+            onChange={(event) => setComment(event.target.value)}
             ref={commentInput}
           />
           <button
@@ -98,8 +98,9 @@ function Comments({ id, postedAt, commentInput }) {
                   skinTone={SKIN_TONE_MEDIUM_LIGHT}
                   pickerStyle={{
                     position: 'absolute',
-                    left: '15px',
-                    top: '45px'
+                    left: '20px',
+                    bottom: '50px',
+                    zIndex: '10'
                   }}
                   onEmojiClick={(event, emojiObject) => {
                     setComment(comment + emojiObject.emoji);

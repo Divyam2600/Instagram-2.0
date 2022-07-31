@@ -91,10 +91,10 @@ function UserEditModal() {
         <div className="m-2 flex min-h-screen items-center  justify-center px-4 pt-4 pb-20 text-center sm:block sm:p-0">
           <Transition.Child
             as={Fragment}
-            enter="ease-out duration-500"
+            enter="ease-in-out duration-500"
             enterFrom="opactiy-0"
             enterTo="opacity-100"
-            leave="ease-in duration-200"
+            leave="ease-in-out duration-200"
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
@@ -105,10 +105,10 @@ function UserEditModal() {
           </span>
           <Transition.Child
             as={Fragment}
-            enter="ease-out duration-500"
+            enter="ease-in-out duration-500"
             enterFrom="opactiy-0 translate-y-4 sm:translate-y-0 sm:scale-95"
             enterTo="opacity-100 translate-y-0 sm:scale-100"
-            leave="ease-in duration-200"
+            leave="ease-in-out duration-200"
             leaveFrom="opacity-100 translate-y-0 sm:scale-100"
             leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
           >
@@ -137,7 +137,7 @@ function UserEditModal() {
               <div className="max-h-96 space-y-3 overflow-y-scroll scrollbar-hide">
                 {error && <p className="error-text mx-1 mt-0">{error}</p>}
                 <form>
-                  <div className="flex space-x-1 xxs:flex-col xxs:space-x-0 ">
+                  <div className="xxs:flex-col xxs:space-x-0 flex space-x-1 ">
                     <input
                       type="text"
                       required

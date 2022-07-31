@@ -45,7 +45,7 @@ function SuggestionsList({ userId, following, loggedInUserDocId }) {
         </button>
         <p className="px-6 text-lg text-gray-500">Suggested Accounts For You</p>
         <div
-          className="scroll- flex space-x-2 overflow-y-scroll scroll-smooth px-6 transition-all delay-200 ease-in scrollbar-hide"
+          className=" flex space-x-2 overflow-y-scroll scroll-smooth px-6 transition-all delay-200 ease-in-out scrollbar-hide"
           ref={suggestions}
         >
           {profiles.map((profile) => (

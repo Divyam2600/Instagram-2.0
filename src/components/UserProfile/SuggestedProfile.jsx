@@ -26,7 +26,7 @@ function SuggestedProfile({
         <img
           src={userImage}
           alt={username}
-          className="h-20 w-20 cursor-pointer rounded-full border"
+          className="h-20 w-20 cursor-pointer rounded-full border object-cover"
         />
         <Link to={`/profile/${username}`} className="text-center">
           <h2 className="-mt-1 cursor-pointer font-semibold">{username}</h2>
