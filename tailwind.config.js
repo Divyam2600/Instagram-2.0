@@ -1,11 +1,13 @@
+const defaultTheme = require('tailwindcss/defaultTheme');
 module.exports = {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
+    screens: {
+      xxs: { max: '420px' },
+      xs: { min: '420px', max: '520px' },
+      ...defaultTheme.screens
+    },
     extend: {
-      screen: {
-        xxs: { max: '420px' },
-        xs: { max: '520px' }
-      },
       rotate: {
         30: '30deg',
         50: '50deg',
@@ -52,6 +54,7 @@ module.exports = {
   plugins: [
     require('tailwind-scrollbar'),
     require('tailwind-scrollbar-hide'),
-    require('tailwindcss-border-gradient-radius')
+    require('tailwindcss-border-gradient-radius'),
+    require('@tailwindcss/line-clamp')
   ]
 };

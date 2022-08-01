@@ -29,12 +29,12 @@
     @apply h-9 w-9 cursor-pointer text-gray-600 transition-all  duration-150 ease-in-out hover:scale-125 sm:h-8 sm:w-8;
   }
   .message {
-    @apply h-fit w-fit max-w-[70%] whitespace-pre-line rounded-2xl py-1 px-3 sm:max-w-[50%] md:max-w-[40%] border;
+    @apply h-fit w-fit max-w-[70%] whitespace-pre-line rounded-lg py-1 px-3 sm:max-w-[50%] md:max-w-[40%];
   }
   .message-container {
     @apply mb-2 flex w-full items-center space-x-2 px-2 text-xs text-black sm:text-sm;
   }
   .message-time {
-    @apply -mb-[2px] self-end text-[10px] leading-4 tracking-tight text-gray-400;
+    @apply -mt-2  text-[10px] leading-4 tracking-tight text-gray-400;
   }
 }

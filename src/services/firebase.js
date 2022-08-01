@@ -488,10 +488,30 @@ export async function addChat(messageId, username, image, id, message) {
     image: image,
     sentAt: serverTimestamp()
   });
+  await updateDoc(messageRef, {
+    lastMessage: message
+  });
 }
 
 // get user from the firestore with the username
 export function getUserLastSeen(username) {
   const usersRef = collection(db, 'users');
   return query(usersRef, where('username', '==', username));
+}
+
+// export async function updateUserStatus(id, status) {
+//   const usersRef = collection(db, "users");
+//   const result = query(usersRef, where("userId", "==", id));
+//   const getResult = await getDocs(result);
+//   const userId = getResult.docs[0].id;
+//   const userRef = doc(usersRef, userId);
+//   await updateDoc(userRef, {
+//     isActive: status,
+//   });
+// }
+
+export function getLastMessage(activeUserId) {
+  const messageRef = collection(db, 'messages');
+  // fetch all chat docs from the collection where active user's id is present
+  return query(messageRef, where('users', 'array-contains', activeUserId));
 }
