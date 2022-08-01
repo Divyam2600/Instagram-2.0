@@ -32,7 +32,7 @@ function Messages() {
     if (users.length < following?.length) {
       getUsers();
     }
-  }, [following, userId, users.length]);
+  }, [following, userId]);
 
   const query = useQuery();
   const [open, setOpen] = useState(true);

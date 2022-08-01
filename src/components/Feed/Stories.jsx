@@ -20,7 +20,7 @@ function Stories({ activeUserId, following }) {
     if (users.length < following.length) {
       getUsers();
     }
-  }, [activeUserId, following, users.length]);
+  }, [activeUserId, following]);
 
   return (
     following && (
