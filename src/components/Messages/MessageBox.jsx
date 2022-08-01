@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import { getChats, getUserByUserId } from '../../services/firebase';
 import { Header } from './Header';
@@ -17,14 +17,18 @@ function MessageBox({ userId, messageId }) {
     };
     userObject();
   }, [userId, messageId]);
+  const messageRef = useRef(null);
   return (
     user && (
       <div className="flex h-full flex-col overflow-hidden">
         <Header username={user.username} image={user.image} />
-        <div className="flex h-full flex-col-reverse overflow-y-scroll pt-2 scrollbar-hide">
+        <div
+          className="flex h-full flex-col-reverse overflow-y-scroll pt-2 scrollbar-hide"
+          ref={messageRef}
+        >
           <Message messageId={messageId} />
         </div>
-        <MessageInput messageId={messageId} />
+        <MessageInput messageId={messageId} messageRef={messageRef?.current} />
       </div>
     )
   );

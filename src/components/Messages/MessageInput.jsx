@@ -9,16 +9,18 @@ import useUser from '../../hooks/use-user';
 import { addChat } from '../../services/firebase';
 import PropTypes from 'prop-types';
 
-function MessageInput({ messageId }) {
+function MessageInput({ messageId, messageRef }) {
   const [message, setMessage] = useState('');
   const {
     user: { username, image, id }
   } = useUser();
   const sendMessage = async (event) => {
     event.preventDefault();
+    document.querySelector('textarea').style.height = '20px';
     const messageToSend = message;
     setMessage('');
     await addChat(messageId, username, image, id, messageToSend);
+    messageRef?.scrollTo({ top: messageRef?.clientHeight, behavior: 'smooth' });
   };
   const increaseHeight = (event) => {
     event.target.style.height = '20px';
@@ -49,5 +51,6 @@ function MessageInput({ messageId }) {
 export default MessageInput;
 
 MessageInput.propType = {
-  messageId: PropTypes.string.isRequired
+  messageId: PropTypes.string.isRequired,
+  messageRef: PropTypes.object
 };
