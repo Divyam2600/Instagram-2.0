@@ -4,11 +4,13 @@ import moment from 'moment';
 
 function ReceiverMessage({ message, image, username, sentAt }) {
   return (
-    <div className="message-container">
-      <img src={image} alt="" className="h-6 w-6 self-end rounded-full object-cover" />
-      <div className="message">{message}</div>
-      <p className="message-time">{moment(sentAt?.toDate()).format('LT')}</p>
-    </div>
+    <>
+      <p className="message-time ml-11">{moment(sentAt?.toDate()).format('LT')}</p>
+      <div className="message-container">
+        <img src={image} alt="" className="h-6 w-6 self-end rounded-full object-cover" />
+        <div className="message rounded-tl-none bg-purple-600 text-white">{message}</div>
+      </div>
+    </>
   );
 }
 

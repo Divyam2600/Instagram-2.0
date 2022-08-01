@@ -137,7 +137,7 @@ function UserEditModal() {
               <div className="max-h-96 space-y-3 overflow-y-scroll scrollbar-hide">
                 {error && <p className="error-text mx-1 mt-0">{error}</p>}
                 <form>
-                  <div className="xxs:flex-col xxs:space-x-0 flex space-x-1 ">
+                  <div className="flex space-x-1 xxs:flex-col xxs:space-x-0 ">
                     <input
                       type="text"
                       required

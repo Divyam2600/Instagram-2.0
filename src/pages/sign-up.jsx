@@ -27,14 +27,15 @@ function SignUp() {
   const handleSignUp = async (event) => {
     event.preventDefault();
     const usernameExists = await doesUsernameExist(username);
-    if (error != '') setLoading(false);
     if (password !== confirmPassword) {
       setError('Passwords Donot Match.');
       setPassword('');
       setConfirmPassword('');
+      setLoading(false);
     } else if (!/^[A-Za-z ]+$/.test(fullName)) {
       setError('Invalid Name.');
       setFullName('');
+      setLoading(false);
     } else if (!usernameExists.length) {
       try {
         const createdUserResult = await createUserWithEmailAndPassword(
@@ -59,6 +60,7 @@ function SignUp() {
         });
         navigate(ROUTES.LOGIN);
       } catch (error) {
+        if (error) setLoading(false);
         if (error.code === 'auth/email-already-exists') {
           setError('Email already exists.');
           setEmailAddress('');
@@ -91,6 +93,7 @@ function SignUp() {
       }
     } else {
       setUsername('');
+      setLoading(false);
       setError('Username already exists. Please choose another one');
     }
   };

@@ -27,7 +27,7 @@ function Dashboard() {
       <Header />
       {user ? (
         <div className="overflow-y-auto scrollbar-hide">
-          <div className="xs:grid-cols-2 mx-auto mt-16 grid h-full grid-cols-1 justify-between gap-4 sm:max-w-xl md:max-w-2xl md:grid-cols-3 lg:max-w-[52rem] xl:max-w-4xl ">
+          <div className="mx-auto mt-16 grid h-full grid-cols-1 justify-between gap-4 xs:grid-cols-2 sm:max-w-xl md:max-w-2xl md:grid-cols-3 lg:max-w-[52rem] xl:max-w-4xl ">
             <section className="container col-span-2 inline-grid ">
               <Feed />
             </section>

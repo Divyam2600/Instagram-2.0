@@ -14,11 +14,12 @@ function Login() {
 
   const handleLogin = async (event) => {
     event.preventDefault();
-    if (error != '') setLoading(false);
     try {
       await signInWithEmailAndPassword(auth, emailAddress, password);
+      // await updateUserStatus(auth.currentUser.uid, true);
       navigate(ROUTES.DASHBOARD);
     } catch (error) {
+      if (error) setLoading(false);
       if (error.code === 'auth/user-not-found') {
         setError("User doesn't exist. Please Sign Up.");
         setEmailAddress('');

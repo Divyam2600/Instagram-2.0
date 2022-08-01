@@ -86,7 +86,7 @@ function Header({ photosCount, profile, followerCount, followingCount, setFollow
               ) : (
                 //
                 <button
-                  className="text-md xxs:w-44 w-48 rounded-md border-2 border-gray-200 bg-white py-1 font-semibold text-black hover:bg-gray-200 hover:bg-opacity-40"
+                  className="text-md w-48 rounded-md border-2 border-gray-200 bg-white py-1 font-semibold text-black hover:bg-gray-200 hover:bg-opacity-40 xxs:w-44"
                   type="button"
                   onClick={() => setOpen(true)}
                 >

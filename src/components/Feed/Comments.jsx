@@ -57,7 +57,7 @@ function Comments({ id, postedAt, commentInput }) {
                 username={comment.data().username}
                 image={comment.data().userImage}
                 comment={comment.data().comment}
-                postedAt={comment.data().timestamp}
+                postedAt={comment.data()?.timestamp}
                 totalLikes={comment.data().likes?.length}
               />
             </div>
