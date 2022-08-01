@@ -5,7 +5,7 @@
 
 @layer components {
   .navButton {
-    @apply h-7 w-7 cursor-pointer text-gray-600 transition-all duration-150 ease-in-out hover:scale-125 active:scale-90 sm:inline-flex sm:h-8 sm:w-8;
+    @apply h-7 w-7 cursor-pointer text-gray-600 transition-all duration-150 ease-in-out hover:scale-125 active:scale-90;
   }
   .input {
     @apply mx-4 mb-2 h-2 w-11/12 rounded-md border-[2.4px] border-gray-300 bg-gray-400 bg-opacity-5 py-6 px-4 text-lg text-black hover:border-gray-500 focus:outline-none;
@@ -26,15 +26,34 @@
     @apply mb-4 -mt-4 text-sm font-semibold text-red-500;
   }
   .postButton {
-    @apply h-9 w-9 cursor-pointer text-gray-600 transition-all  duration-150 ease-in-out hover:scale-125 sm:h-8 sm:w-8;
+    @apply h-9 w-9 cursor-pointer text-gray-600 transition-all  duration-150 ease-in-out hover:scale-125;
   }
   .message {
-    @apply h-fit w-fit max-w-[70%] whitespace-pre-line rounded-lg py-1 px-3 sm:max-w-[50%] md:max-w-[40%];
+    @apply h-fit w-fit max-w-[70%] whitespace-pre-line rounded-lg py-1 px-3;
   }
   .message-container {
-    @apply mb-2 flex w-full items-center space-x-2 px-2 text-xs text-black sm:text-sm;
+    @apply relative mb-2 flex w-full items-center space-x-2 px-2 text-xs text-black;
   }
   .message-time {
-    @apply -mt-2  text-[10px] leading-4 tracking-tight text-gray-400;
+    @apply -mt-[10px] mb-1 text-[8px] leading-4 tracking-tight text-gray-400;
+  }
+  @screen sm {
+    .navButton {
+      @apply inline-flex h-8 w-8;
+    }
+    .postButton {
+      @apply h-8 w-8;
+    }
+    .message {
+      @apply max-w-[50%];
+    }
+    .message-container {
+      @apply text-sm;
+    }
+  }
+  @screen md {
+    .message {
+      @apply max-w-[40%];
+    }
   }
 }
