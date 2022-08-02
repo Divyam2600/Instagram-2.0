@@ -8,19 +8,24 @@ import React, { useState } from 'react';
 import useUser from '../../hooks/use-user';
 import { addChat } from '../../services/firebase';
 import PropTypes from 'prop-types';
+import { sendMediaModalState } from '../../atoms/modalAtom';
+import { useRecoilState } from 'recoil';
+import { messageIdState } from '../../atoms/idAtom';
 
 function MessageInput({ messageId, messageRef }) {
   const [message, setMessage] = useState('');
   const {
     user: { username, image, id }
   } = useUser();
+  const [open, setOpen] = useRecoilState(sendMediaModalState);
+  const [keptMessageId, setKeptMessageId] = useRecoilState(messageIdState);
   const sendMessage = async (event) => {
     event.preventDefault();
     document.querySelector('textarea').style.height = '20px';
     const messageToSend = message;
     setMessage('');
     await addChat(messageId, username, image, id, messageToSend);
-    messageRef?.scrollTo({ top: messageRef?.clientHeight, behavior: 'smooth' });
+    messageRef.scrollTo({ top: messageRef.clientHeight });
   };
   const increaseHeight = (event) => {
     event.target.style.height = '20px';
@@ -43,7 +48,12 @@ function MessageInput({ messageId, messageRef }) {
           className={`navButton -mt-2 h-6 w-6 rotate-50 ${!message && 'w-0 scale-0'}`}
         />
       </button>
-      <CameraIcon className="box-content h-7 w-7 cursor-pointer rounded-full bg-purple-700 fill-white p-[2px] text-purple-700 transition duration-200 ease-in-out hover:scale-110 active:scale-90" />
+      <CameraIcon
+        className="box-content h-7 w-7 cursor-pointer rounded-full bg-purple-700 fill-white p-[2px] text-purple-700 transition duration-200 ease-in-out hover:scale-110 active:scale-90"
+        onClick={() => {
+          setOpen(true), setKeptMessageId(messageId);
+        }}
+      />
     </div>
   );
 }

@@ -25,7 +25,14 @@ function Message({ messageId }) {
     chats.length > 0 &&
     chats?.map((chat) =>
       chat.data().sender === username ? (
-        <SenderMessage key={chat.id} message={chat.data().message} sentAt={chat.data().sentAt} />
+        <SenderMessage
+          key={chat.id}
+          message={chat.data().message}
+          username={chat.data().sender}
+          sentAt={chat.data().sentAt}
+          isImage={chat.data().isImage}
+          isVideo={chat.data().isVideo}
+        />
       ) : (
         <ReceiverMessage
           key={chat.id}
@@ -33,6 +40,8 @@ function Message({ messageId }) {
           image={chat.data().image}
           username={chat.data().sender}
           sentAt={chat.data().sentAt}
+          isImage={chat.data().isImage}
+          isVideo={chat.data().isVideo}
         />
       )
     )

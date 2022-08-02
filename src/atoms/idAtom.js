@@ -14,3 +14,8 @@ export const commentIdState = atom({
   key: 'commentIdState',
   default: ''
 });
+
+export const messageIdState = atom({
+  key: 'messageIdState',
+  default: ''
+});

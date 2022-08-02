@@ -1,5 +1,5 @@
 import { firebaseApp } from '../lib/firebase';
-import { deleteObject, getStorage } from 'firebase/storage';
+import { deleteObject, getStorage, uploadBytesResumable } from 'firebase/storage';
 import {
   addDoc,
   arrayRemove,
@@ -475,6 +475,7 @@ export function getChats(messageId) {
   return query(chatRef, orderBy('sentAt', 'desc'));
 }
 
+// to add a text-chat sent by the user(s)
 export async function addChat(messageId, username, image, id, message) {
   const userRef = doc(db, 'users', id);
   await updateDoc(userRef, {
@@ -486,14 +487,16 @@ export async function addChat(messageId, username, image, id, message) {
     message: message,
     sender: username,
     image: image,
-    sentAt: serverTimestamp()
+    sentAt: serverTimestamp(),
+    isImage: false,
+    isVideo: false
   });
   await updateDoc(messageRef, {
     lastMessage: message
   });
 }
 
-// get user from the firestore with the username
+// get user from the firestore with the username (for realtime snapshot)
 export function getUserLastSeen(username) {
   const usersRef = collection(db, 'users');
   return query(usersRef, where('username', '==', username));
@@ -514,4 +517,61 @@ export function getLastMessage(activeUserId) {
   const messageRef = collection(db, 'messages');
   // fetch all chat docs from the collection where active user's id is present
   return query(messageRef, where('users', 'array-contains', activeUserId));
+}
+
+// to add a media(image or video) file sent by the user(s)
+// here we push the download url as the message so that we can conditionally render it in the component based on its type : image or video or text (neither image nor video)
+export async function sendMedia(messageId, username, image, id, isImage, selectedFile, videoFile) {
+  const userRef = doc(db, 'users', id);
+  // update the activeUser's last seen
+  await updateDoc(userRef, {
+    lastSeen: serverTimestamp()
+  });
+  const mediaType = isImage ? 'image' : 'video';
+  const messageRef = doc(db, 'messages', messageId);
+  const chatsRef = collection(messageRef, 'chats');
+  const mediaRef = ref(storage, `messages/${messageId}/chats/${id}/${Date.now()}/${mediaType}`);
+  // upload image file to storage and then push the url to firestore
+  if (isImage) {
+    await uploadString(mediaRef, selectedFile, 'data_url').then(async () => {
+      const downloadUrl = await getDownloadURL(mediaRef);
+      await addDoc(chatsRef, {
+        message: downloadUrl,
+        sender: username,
+        image: image,
+        sentAt: serverTimestamp(),
+        isImage: isImage,
+        isVideo: !isImage
+      });
+    });
+  }
+  // upload video file to storage and then push the url to firestore
+  else {
+    const uploadTask = uploadBytesResumable(mediaRef, videoFile);
+    uploadTask.on(
+      'state_changed',
+      (snapshot) => {
+        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        console.log(progress);
+      },
+      (error) => {
+        console.log(error);
+      },
+      () => {
+        getDownloadURL(uploadTask.snapshot.ref).then(async (downloadUrl) => {
+          await addDoc(chatsRef, {
+            message: downloadUrl,
+            sender: username,
+            image: image,
+            sentAt: serverTimestamp(),
+            isImage: isImage,
+            isVideo: !isImage
+          });
+        });
+      }
+    );
+  }
+  await updateDoc(messageRef, {
+    lastMessage: isImage ? '📸Image' : '📹Video'
+  });
 }

@@ -7,6 +7,8 @@ import useQuery from '../hooks/use-query';
 import MessageBox from '../components/Messages/MessageBox';
 import { ArrowCircleRightIcon, PaperAirplaneIcon } from '@heroicons/react/outline';
 import SideProfile from '../components/Messages/SideProfile';
+import SearchBarModal from '../components/Modals/SearchBarModal';
+import SendMedia from '../components/Modals/SendMedia';
 
 function Messages() {
   const {
@@ -29,15 +31,17 @@ function Messages() {
         setUsers((users) => [...users, otherUsers[0]]);
       });
     // to allow rendering of userlist only once when user array length is less than following length
-    if (users.length < following?.length) {
+    if (following && users.length < following.length) {
       getUsers();
     }
-  }, [following, userId]);
+  }, [userId]);
 
   const query = useQuery();
   const [open, setOpen] = useState(true);
   return (
     <div className="h-full">
+      <SearchBarModal />
+      <SendMedia />
       <Header />
       <main className="relative mx-auto mt-20 flex max-h-fit justify-end space-x-2 p-2 sm:max-w-xl md:max-w-2xl lg:max-w-3xl xl:max-w-4xl">
         <section

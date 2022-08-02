@@ -44,3 +44,8 @@ export const searchBarModalState = atom({
   key: 'searchBarModalState',
   default: false
 });
+
+export const sendMediaModalState = atom({
+  key: 'sendMediaModalState',
+  default: false
+});
