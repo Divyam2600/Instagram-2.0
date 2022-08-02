@@ -124,7 +124,7 @@ function PostModal() {
                 </div>
                 <div className="mt-5 sm:mt-6">
                   <button
-                    className="disables:bg-gray-400 enabled:hover:scale-[1.03] enabled:active:scale-95 duration-200 inline-flex w-full justify-center rounded-md border border-transparent bg-red-400 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-red-500 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 disabled:cursor-not-allowed sm:text-sm "
+                    className="disables:bg-gray-400 inline-flex w-full justify-center rounded-md border border-transparent bg-red-400 px-4 py-2 text-base font-medium text-white shadow-sm duration-200 hover:bg-red-500 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 enabled:hover:scale-[1.03] enabled:active:scale-95 disabled:cursor-not-allowed sm:text-sm "
                     onClick={uploadPost}
                     type="button"
                     disabled={!selectedFile}

@@ -18,7 +18,7 @@ function SideProfile({ open, username, image, activeUserId, followingUserId }) {
       });
     }
     showLastMessage();
-  }, [db, activeUserId,followingUserId]);
+  }, [db, activeUserId, followingUserId]);
   return (
     <>
       <img
@@ -47,5 +47,5 @@ SideProfile.propType = {
   username: PropTypes.string.isRequired,
   image: PropTypes.string.isRequired,
   activeUserId: PropTypes.string.isRequired,
-  followingUserId: PropTypes.string.isRequired,
+  followingUserId: PropTypes.string.isRequired
 };
