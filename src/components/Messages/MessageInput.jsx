@@ -25,7 +25,7 @@ function MessageInput({ messageId, messageRef }) {
     const messageToSend = message;
     setMessage('');
     await addChat(messageId, username, image, id, messageToSend);
-    messageRef.scrollTo({ top: messageRef.clientHeight });
+    messageRef.current.scrollTo({ top: messageRef.current.clientHeight });
   };
   const increaseHeight = (event) => {
     event.target.style.height = '20px';

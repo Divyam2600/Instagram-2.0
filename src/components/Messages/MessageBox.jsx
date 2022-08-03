@@ -28,7 +28,7 @@ function MessageBox({ userId, messageId }) {
         >
           <Message messageId={messageId} />
         </div>
-        <MessageInput messageId={messageId} messageRef={messageRef?.current} />
+        <MessageInput messageId={messageId} messageRef={messageRef} />
       </div>
     )
   );

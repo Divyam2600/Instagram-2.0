@@ -43,7 +43,7 @@ function ReceiverMessage({ message, image, username, sentAt, isImage, isVideo })
             <>
               <video
                 src={message}
-                preload={true}
+                preload="true"
                 alt={`Sent By ${username}`}
                 className="-ml-2 rounded-2xl object-cover hover:opacity-80"
                 ref={videoRef}

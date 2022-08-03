@@ -25,9 +25,9 @@ function SenderMessage({ message, username, sentAt, isImage, isVideo }) {
           <span className="absolute right-[2px] top-0 h-0 w-0 border-8 border-[#edeef1] border-x-transparent border-b-transparent" />
         )}
         <div
-          className={`message bg-gray-200 bg-opacity-70 ${
-            (isImage || isVideo) &&
-            'relative -mr-2 aspect-auto max-w-[50%] cursor-pointer bg-opacity-0 xxs:max-w-[60%] xs:max-w-[60%] lg:max-w-[35%]'
+          className={`message bg-gray-200 ${
+            (isImage || isVideo) ?
+            'relative -mr-2 aspect-auto max-w-[50%] cursor-pointer bg-opacity-0 xxs:max-w-[60%] xs:max-w-[60%] lg:max-w-[35%]' : 'bg-opacity-70'
           }`}
         >
           {!isImage && !isVideo && message}
@@ -38,7 +38,7 @@ function SenderMessage({ message, username, sentAt, isImage, isVideo }) {
             <>
               <video
                 src={message}
-                preload={true}
+                preload="true"
                 alt={`Sent By ${username}`}
                 className="rounded-2xl object-cover hover:opacity-80"
                 ref={videoRef}
