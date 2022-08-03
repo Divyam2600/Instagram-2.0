@@ -3,6 +3,32 @@
 @tailwind utilities;
 @tailwind variants;
 
+@font-face {
+  font-family: Poppins;
+  src: url("/assets/fonts/Poppins-Light.otf"),
+    url("/assets/fonts/Poppins-ExtraLightItalic.otf"),
+    url("/assets/fonts/Poppins-LightItalic.otf"),
+    url("/assets/fonts/Poppins-Italic.otf"),
+    url("/assets/fonts/Poppins-Black.otf"),
+    url("/assets/fonts/Poppins-BlackItalic.otf"),
+    url("/assets/fonts/Poppins-Bold.otf"),
+    url("/assets/fonts/Poppins-BoldItalic.otf"),
+    url("/assets/fonts/Poppins-ExtraBold.otf"),
+    url("/assets/fonts/Poppins-ExtraBoldItalic.otf"),
+    url("/assets/fonts/Poppins-ExtraLight.otf"),
+    url("/assets/fonts/Poppins-Medium.otf"),
+    url("/assets/fonts/Poppins-MediumItalic.otf"),
+    url("/assets/fonts/Poppins-Regular.otf"),
+    url("/assets/fonts/Poppins-SemiBold.otf"),
+    url("/assets/fonts/Poppins-SemiBoldItalic.otf"),
+    url("/assets/fonts/Poppins-Thin.otf"),
+    url("/assets/fonts/Poppins-ThinItalic.otf");
+}
+@layer base {
+  html {
+    font-family: Poppins, system-ui, sans-serif;
+  }
+}
 @layer components {
   .navButton {
     @apply h-7 w-7 cursor-pointer text-gray-600 transition-all duration-150 ease-in-out hover:scale-125 active:scale-90;
@@ -35,7 +61,7 @@
     @apply relative mb-2 flex w-full items-center space-x-2 px-2 text-xs text-black;
   }
   .message-time {
-    @apply -mt-[10px] mb-1 text-[8px] leading-4 tracking-tight text-gray-400;
+    @apply -mt-[10px] mb-1 text-[10px] leading-4 tracking-wide text-gray-400;
   }
   @screen sm {
     .navButton {
