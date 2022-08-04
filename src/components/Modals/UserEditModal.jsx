@@ -2,7 +2,7 @@ import React, { Fragment, useRef, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import { userEditModal } from '../../atoms/modalAtom';
 import { Dialog, Transition } from '@headlessui/react';
-import { CameraIcon, PencilAltIcon, XIcon } from '@heroicons/react/outline';
+import { CameraIcon, PencilAltIcon, TrashIcon, XIcon } from '@heroicons/react/outline';
 import useUser from '../../hooks/use-user';
 import {
   doesUsernameExist,
@@ -167,7 +167,7 @@ function UserEditModal() {
                       required
                       aria-label="Enter Your Bio"
                       placeholder="Edit Bio..."
-                      className="h-20 w-full rounded-md border-[2.4px] border-gray-300 bg-gray-400 bg-opacity-5 p-2 text-sm text-black scrollbar-hide placeholder:text-lg hover:border-gray-500 focus:outline-none"
+                      className="h-40 resize-none w-full rounded-md border-[2.4px] border-gray-300 bg-gray-400 bg-opacity-5 p-2 text-sm text-black scrollbar-hide placeholder:text-lg hover:border-gray-500 focus:outline-none"
                       onChange={({ target }) => {
                         setEditBio(target.value), setError();
                       }}
@@ -202,7 +202,22 @@ function UserEditModal() {
                           className="text-lg font-semibold leading-6 text-gray-500"
                         >
                           {selectedFile
-                            ? 'Note: Click on the Photo to Reselect.'
+                            ? <div className="flex items-center justify-center space-x-2">
+                            <div
+                              className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full bg-red-100"
+                              onClick={() => {
+                                setSelectedFile(null);
+                              }}
+                            >
+                              <TrashIcon
+                                className="h-5 w-5 text-red-600"
+                                aria-hidden="true"
+                              />
+                            </div>
+                            <p className="text-sm">
+                              Click here to Remove and Reselect
+                            </p>
+                          </div>
                             : 'Click on the Icon to Select An Image.'}
                         </Dialog.Title>
                         <div>

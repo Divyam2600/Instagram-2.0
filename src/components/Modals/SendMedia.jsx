@@ -1,17 +1,18 @@
-import React, { Fragment, useRef, useState } from 'react';
-import { useRecoilState } from 'recoil';
-import { sendMediaModalState } from '../../atoms/modalAtom';
-import { Dialog, Transition } from '@headlessui/react';
+import React, { Fragment, useRef, useState } from "react";
+import { useRecoilState } from "recoil";
+import { sendMediaModalState } from "../../atoms/modalAtom";
+import { Dialog, Transition } from "@headlessui/react";
 import {
   CameraIcon,
   ChatAlt2Icon,
   PaperAirplaneIcon,
+  TrashIcon,
   VideoCameraIcon,
-  XIcon
-} from '@heroicons/react/outline';
-import useUser from '../../hooks/use-user';
-import { sendMedia } from '../../services/firebase';
-import { messageIdState } from '../../atoms/idAtom';
+  XIcon,
+} from "@heroicons/react/outline";
+import useUser from "../../hooks/use-user";
+import { sendMedia } from "../../services/firebase";
+import { messageIdState } from "../../atoms/idAtom";
 
 function SendMedia() {
   const [messageId, setMessageId] = useRecoilState(messageIdState);
@@ -23,13 +24,21 @@ function SendMedia() {
   const [isImage, setIsImage] = useState(false);
   const [videoFile, setVideoFile] = useState(null);
   const {
-    user: { username, image, id }
+    user: { username, image, id },
   } = useUser();
   // to push the media message to firebase
   const uploadPost = async () => {
     if (loading) return;
     setLoading(true);
-    await sendMedia(messageId, username, image, id, isImage, selectedFile, videoFile);
+    await sendMedia(
+      messageId,
+      username,
+      image,
+      id,
+      isImage,
+      selectedFile,
+      videoFile
+    );
     setOpen(false);
     setIsImage(false);
     setLoading(false);
@@ -49,7 +58,11 @@ function SendMedia() {
 
   return (
     <Transition.Root show={open} as={Fragment}>
-      <Dialog as="div" className="absolute inset-0 z-[60] overflow-y-auto" onClose={setOpen}>
+      <Dialog
+        as="div"
+        className="absolute inset-0 z-[60] overflow-y-auto"
+        onClose={setOpen}
+      >
         <div className="m-2 flex min-h-screen items-center justify-center px-4 pt-4 pb-20 text-center sm:block sm:p-0 ">
           <Transition.Child
             as={Fragment}
@@ -62,7 +75,10 @@ function SendMedia() {
           >
             <Dialog.Overlay className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
           </Transition.Child>
-          <span className="hidden sm:inline-block sm:h-screen sm:align-middle" aria-hidden="true">
+          <span
+            className="hidden sm:inline-block sm:h-screen sm:align-middle"
+            aria-hidden="true"
+          >
             &#8203;
           </span>
           <Transition.Child
@@ -74,11 +90,14 @@ function SendMedia() {
             leaveFrom="opacity-100 translate-y-0 sm:scale-100"
             leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
           >
-            <div className="inline-block w-full transform space-y-4 overflow-hidden rounded-lg bg-white p-4 text-left align-bottom shadow-xl transition-all sm:my-8 sm:max-w-sm sm:p-6 sm:align-middle">
+            <div className="inline-block w-full max-w-sm transform space-y-4 overflow-hidden rounded-lg bg-white p-6 text-left align-bottom shadow-xl transition-all sm:my-8 sm:align-middle">
               <button
                 className="float-right outline-none"
                 onClick={() => {
-                  setOpen(false), setLoading(false), setIsImage(false), setSelectedFile(null);
+                  setOpen(false),
+                    setLoading(false),
+                    setIsImage(false),
+                    setSelectedFile(null);
                 }}
               >
                 <XIcon className=" h-6  w-6 cursor-pointer text-gray-300" />
@@ -108,7 +127,7 @@ function SendMedia() {
                       controls={true}
                       loop={true}
                       disablePictureInPicture={true}
-                      controlsList={'nodownload nofullscreen foobar'}
+                      controlsList={"nodownload nofullscreen foobar"}
                       alt="Sending Video"
                       className="max-h-64 w-full cursor-pointer object-cover"
                       onClick={() => setSelectedFile(null)}
@@ -123,7 +142,10 @@ function SendMedia() {
                       }}
                       className="flex h-12 w-12 cursor-pointer items-center justify-center rounded-full bg-red-100"
                     >
-                      <CameraIcon className="h-6 w-6 text-red-600" aria-hidden="true" />
+                      <CameraIcon
+                        className="h-6 w-6 text-red-600"
+                        aria-hidden="true"
+                      />
                     </div>
                     <p>OR</p>
                     <div
@@ -132,16 +154,41 @@ function SendMedia() {
                       }}
                       className="flex h-12 w-12 cursor-pointer items-center justify-center rounded-full bg-red-100"
                     >
-                      <VideoCameraIcon className="h-6 w-6 text-red-600" aria-hidden="true" />
+                      <VideoCameraIcon
+                        className="h-6 w-6 text-red-600"
+                        aria-hidden="true"
+                      />
                     </div>
                   </div>
                 )}
                 <div>
                   <div className="mt-3 text-center sm:mt-5">
-                    <Dialog.Title as="h3" className="text-lg font-semibold leading-6 text-gray-500">
-                      {selectedFile
-                        ? `Note: Click on the ${isImage ? 'Image' : 'Video'} to Reselect.`
-                        : 'Click on the Icon to Select Respective Media.'}
+                    <Dialog.Title
+                      as="h3"
+                      className="text-lg font-semibold leading-6 text-gray-500"
+                    >
+                      {selectedFile ? (
+                        <div className="flex items-center justify-center space-x-2">
+                          <div
+                            className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full bg-red-100"
+                            onClick={() => {
+                              setSelectedFile(null);
+                              setIsImage(false);
+                              setVideoFile(null);
+                            }}
+                          >
+                            <TrashIcon
+                              className="h-5 w-5 text-red-600"
+                              aria-hidden="true"
+                            />
+                          </div>
+                          <p className="text-sm">
+                            Click here to Remove and Reselect
+                          </p>
+                        </div>
+                      ) : (
+                        "Click on the Icon to Select Respective Media."
+                      )}
                     </Dialog.Title>
                     <div>
                       <input
@@ -169,7 +216,7 @@ function SendMedia() {
                     disabled={!selectedFile}
                   >
                     <PaperAirplaneIcon className="-mt-1 mr-1 h-6 w-6 rotate-50" />
-                    {loading ? 'Sending...' : 'Send'}
+                    {loading ? "Sending..." : "Send"}
                   </button>
                 </div>
               </div>

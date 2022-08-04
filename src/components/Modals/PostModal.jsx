@@ -2,7 +2,7 @@ import React, { Fragment, useRef, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import { postModalState } from '../../atoms/modalAtom';
 import { Dialog, Transition } from '@headlessui/react';
-import { CameraIcon, CloudUploadIcon, XIcon } from '@heroicons/react/outline';
+import { CameraIcon, CloudUploadIcon, TrashIcon, XIcon } from '@heroicons/react/outline';
 import useUser from '../../hooks/use-user';
 import { addPostsToFirestore } from '../../services/firebase';
 
@@ -64,7 +64,7 @@ function PostModal() {
             leaveFrom="opacity-100 translate-y-0 sm:scale-100"
             leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
           >
-            <div className="inline-block w-full transform space-y-4 overflow-hidden rounded-lg bg-white p-4 text-left align-bottom shadow-xl transition-all sm:my-8 sm:max-w-sm sm:p-6 sm:align-middle">
+            <div className="inline-block w-full max-w-sm transform space-y-4 overflow-hidden rounded-lg bg-white p-6 text-left align-bottom shadow-xl transition-all sm:my-8 sm:align-middle">
               <button
                 className="float-right outline-none"
                 onClick={() => {
@@ -100,7 +100,22 @@ function PostModal() {
                   <div className="mt-3 text-center sm:mt-5">
                     <Dialog.Title as="h3" className="text-lg font-semibold leading-6 text-gray-500">
                       {selectedFile
-                        ? 'Note: Click on the Photo to Reselect.'
+                        ? <div className="flex items-center justify-center space-x-2">
+                        <div
+                          className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full bg-red-100"
+                          onClick={() => {
+                            setSelectedFile(null);
+                          }}
+                        >
+                          <TrashIcon
+                            className="h-5 w-5 text-red-600"
+                            aria-hidden="true"
+                          />
+                        </div>
+                        <p className="text-sm">
+                          Click here to Remove and Reselect
+                        </p>
+                      </div>
                         : 'Click on the Icon to Select An Image.'}
                     </Dialog.Title>
                     <div>
