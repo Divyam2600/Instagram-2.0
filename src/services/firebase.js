@@ -489,7 +489,8 @@ export async function addChat(messageId, username, image, id, message) {
     image: image,
     sentAt: serverTimestamp(),
     isImage: false,
-    isVideo: false
+    isVideo: false,
+    isAudio: false
   });
   await updateDoc(messageRef, {
     lastMessage: message
@@ -541,7 +542,8 @@ export async function sendMedia(messageId, username, image, id, isImage, selecte
         image: image,
         sentAt: serverTimestamp(),
         isImage: isImage,
-        isVideo: !isImage
+        isVideo: !isImage,
+        isAudio: false
       });
     });
   }
@@ -565,7 +567,8 @@ export async function sendMedia(messageId, username, image, id, isImage, selecte
             image: image,
             sentAt: serverTimestamp(),
             isImage: isImage,
-            isVideo: !isImage
+            isVideo: !isImage,
+            isAudio: false
           });
         });
       }
@@ -573,5 +576,34 @@ export async function sendMedia(messageId, username, image, id, isImage, selecte
   }
   await updateDoc(messageRef, {
     lastMessage: isImage ? '📸Image' : '📹Video'
+  });
+}
+
+export async function sendAudio(messageId, username, image, id, selectedFile) {
+  const userRef = doc(db, 'users', id);
+  // update the activeUser's last seen
+  await updateDoc(userRef, {
+    lastSeen: serverTimestamp()
+  });
+  const messageRef = doc(db, 'messages', messageId);
+  const chatsRef = collection(messageRef, 'chats');
+  const audioRef = ref(storage, `messages/${messageId}/chats/${id}/${Date.now()}/audio`);
+  // upload audio file to storage and then push the url to firestore
+  await uploadString(audioRef, selectedFile, 'data_url').then(async () => {
+    const downloadUrl = await getDownloadURL(audioRef);
+    await addDoc(chatsRef, {
+      message: downloadUrl,
+      sender: username,
+      image: image,
+      sentAt: serverTimestamp(),
+      isImage: false,
+      isVideo: false,
+      isAudio: true,
+      audioId: username + Date.now()
+    });
+  });
+
+  await updateDoc(messageRef, {
+    lastMessage: '🎙️Audio'
   });
 }

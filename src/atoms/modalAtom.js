@@ -49,3 +49,8 @@ export const sendMediaModalState = atom({
   key: 'sendMediaModalState',
   default: false
 });
+
+export const sendAudioModalState = atom({
+  key: 'sendAudioModalState',
+  default: false
+});

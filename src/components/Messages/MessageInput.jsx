@@ -8,7 +8,7 @@ import React, { useState } from 'react';
 import useUser from '../../hooks/use-user';
 import { addChat } from '../../services/firebase';
 import PropTypes from 'prop-types';
-import { sendMediaModalState } from '../../atoms/modalAtom';
+import { sendAudioModalState, sendMediaModalState } from '../../atoms/modalAtom';
 import { useRecoilState } from 'recoil';
 import { messageIdState } from '../../atoms/idAtom';
 
@@ -19,6 +19,8 @@ function MessageInput({ messageId, messageRef }) {
   } = useUser();
   const [open, setOpen] = useRecoilState(sendMediaModalState);
   const [keptMessageId, setKeptMessageId] = useRecoilState(messageIdState);
+  const [keepOpen, setKeepOpen] = useRecoilState(sendAudioModalState);
+
   const sendMessage = async (event) => {
     event.preventDefault();
     document.querySelector('textarea').style.height = '20px';
@@ -42,14 +44,19 @@ function MessageInput({ messageId, messageRef }) {
         onKeyUp={increaseHeight}
       />
       <PaperClipIcon className={`navButton h-5 w-5 ${message && 'w-0 scale-0'}`} />
-      <MicrophoneIcon className={`navButton h-5 w-5 ${message && 'w-0 scale-0'}`} />
+      <MicrophoneIcon
+        className={`navButton h-5 w-5 ${message && 'w-0 scale-0'}`}
+        onClick={() => {
+          setKeepOpen(true), setKeptMessageId(messageId);
+        }}
+      />
       <button type="submit" disabled={!message.trim()} onClick={sendMessage}>
         <PaperAirplaneIcon
           className={`navButton -mt-2 h-6 w-6 rotate-50 ${!message && 'w-0 scale-0'}`}
         />
       </button>
       <CameraIcon
-        className="box-content h-7 w-7 cursor-pointer rounded-full bg-purple-700 fill-white p-[2px] text-purple-700 transition duration-200 ease-in-out hover:scale-110 active:scale-90"
+        className="box-content h-7 w-7 cursor-pointer rounded-full bg-blue-700 fill-white p-[2px] text-blue-700 transition duration-200 ease-in-out hover:scale-110 active:scale-90"
         onClick={() => {
           setOpen(true), setKeptMessageId(messageId);
         }}

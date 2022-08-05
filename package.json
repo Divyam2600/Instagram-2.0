@@ -25,7 +25,8 @@
     "react-topbar-progress-indicator": "^4.1.1",
     "recoil": "^0.7.4",
     "tailwind-scrollbar-hide": "^1.1.7",
-    "tailwindcss-border-gradient-radius": "^3.0.1"
+    "tailwindcss-border-gradient-radius": "^3.0.1",
+    "wavesurfer.js": "^6.2.0"
   },
   "eslintConfig": {
     "extends": [

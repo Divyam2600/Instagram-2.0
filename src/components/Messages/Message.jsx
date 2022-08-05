@@ -28,10 +28,13 @@ function Message({ messageId }) {
         <SenderMessage
           key={chat.id}
           message={chat.data().message}
+          image={chat.data().image}
           username={chat.data().sender}
           sentAt={chat.data().sentAt}
           isImage={chat.data().isImage}
           isVideo={chat.data().isVideo}
+          isAudio={chat.data().isAudio}
+          audioId={chat.data().audioId}
         />
       ) : (
         <ReceiverMessage
@@ -42,6 +45,8 @@ function Message({ messageId }) {
           sentAt={chat.data().sentAt}
           isImage={chat.data().isImage}
           isVideo={chat.data().isVideo}
+          isAudio={chat.data().isAudio}
+          audioId={chat.data().audioId}
         />
       )
     )

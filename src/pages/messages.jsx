@@ -9,6 +9,7 @@ import { ArrowCircleRightIcon, PaperAirplaneIcon } from '@heroicons/react/outlin
 import SideProfile from '../components/Messages/SideProfile';
 import SearchBarModal from '../components/Modals/SearchBarModal';
 import SendMedia from '../components/Modals/SendMedia';
+import SendAudioModal from '../components/Modals/SendAudioModal';
 
 function Messages() {
   const {
@@ -41,6 +42,7 @@ function Messages() {
   return (
     <div className="h-full">
       <SearchBarModal />
+      <SendAudioModal />
       <SendMedia />
       <Header />
       <main className="relative mx-auto mt-20 flex max-h-fit justify-end space-x-2 p-2 sm:max-w-xl md:max-w-2xl lg:max-w-3xl xl:max-w-4xl">
