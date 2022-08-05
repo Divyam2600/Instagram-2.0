@@ -28,8 +28,9 @@ Current Features :
 <li>Photo Popup Modal in Profile Page</li>
 <li>Delete Post functionality for the Owner</li>
 <li>One to One Private Messaging functionality with Users in Following</li>
-<li>Media(Image, Video) Sending support in Private Messages</li>
-<li>Active Inactive Status of Users in Message</li>
+<li>Media(Image, Video), Audio Sending support in Private Messages</li>
+<li>Voice Recording and Sending in Private Messages</li>
+<li>Last Active Status of Users in Message</li>
 <li>Protected Routes</li>
 <li>Progress Bar on Route Change</li>
 <br/>
