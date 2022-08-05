@@ -36,8 +36,8 @@ function MessageInput({ messageId, messageRef }) {
   return (
     <div className="z-100 sticky my-2 mx-auto flex w-[95%] items-center space-x-1 self-end rounded-3xl border p-1">
       <textarea
-        placeholder="Enter your message..."
-        className="m-0 h-5 max-h-24 max-w-full flex-1 resize-none overflow-auto border-r bg-transparent px-4 text-sm outline-none scrollbar-hide"
+        placeholder="Enter your message ..."
+        className="m-0 h-5 max-h-24 max-w-full flex-1 xxs:placeholder:text-[12px] resize-none overflow-auto border-r bg-transparent px-4 text-sm outline-none scrollbar-hide"
         onChange={(event) => setMessage(event.target.value)}
         autoComplete="off"
         value={message}
