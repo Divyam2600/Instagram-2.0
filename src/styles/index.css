@@ -55,7 +55,7 @@
     @apply h-9 w-9 cursor-pointer text-gray-600 transition-all  duration-150 ease-in-out hover:scale-125;
   }
   .message {
-    @apply h-fit w-fit max-w-[70%] whitespace-pre-line rounded-lg py-1 px-3;
+    @apply h-fit w-fit max-w-[70%] mb-1 whitespace-pre-line rounded-lg py-1 px-3;
   }
   .message-container {
     @apply relative mb-2 flex w-full items-center space-x-2 px-2 text-xs text-black;

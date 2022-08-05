@@ -52,6 +52,7 @@ function useRecorder() {
     }
   }, [recorderState.mediaStream]);
 
+  // convert the blob url to a base64 code
   const blobToBase64 = (blob) => {
     const reader = new FileReader();
     reader.readAsDataURL(blob);
@@ -72,7 +73,7 @@ function useRecorder() {
       recorder.ondataavailable = (event) => {
         chunks.push(event.data);
       };
-      // create the Blob through chunks and then audio is created
+      // create the Blob through chunks, encode it to base64 and store it in audio
       recorder.onstop = async () => {
         const blob = new Blob(chunks, { type: 'audio/ogg; codecs=opus' });
         const base64 = await blobToBase64(blob);
@@ -87,7 +88,6 @@ function useRecorder() {
         });
       };
     }
-    // blob:http://localhost:5173/123f8286-40a7-4723-ae7a-315d7398fbe9
     return () => {
       if (recorder) {
         recorder.stream.getAudioTracks().forEach((track) => track.stop());

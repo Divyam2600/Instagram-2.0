@@ -99,24 +99,21 @@ function PostModal() {
                 <div>
                   <div className="mt-3 text-center sm:mt-5">
                     <Dialog.Title as="h3" className="text-lg font-semibold leading-6 text-gray-500">
-                      {selectedFile
-                        ? <div className="flex items-center justify-center space-x-2">
-                        <div
-                          className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full bg-red-100"
-                          onClick={() => {
-                            setSelectedFile(null);
-                          }}
-                        >
-                          <TrashIcon
-                            className="h-5 w-5 text-red-600"
-                            aria-hidden="true"
-                          />
+                      {selectedFile ? (
+                        <div className="flex items-center justify-center space-x-2">
+                          <div
+                            className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full bg-red-100"
+                            onClick={() => {
+                              setSelectedFile(null);
+                            }}
+                          >
+                            <TrashIcon className="h-5 w-5 text-red-600" aria-hidden="true" />
+                          </div>
+                          <p className="text-sm">Click here to Remove and Reselect</p>
                         </div>
-                        <p className="text-sm">
-                          Click here to Remove and Reselect
-                        </p>
-                      </div>
-                        : 'Click on the Icon to Select An Image.'}
+                      ) : (
+                        'Click on the Icon to Select An Image.'
+                      )}
                     </Dialog.Title>
                     <div>
                       <input

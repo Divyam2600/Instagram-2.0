@@ -47,7 +47,7 @@ function SendAudioModal() {
       setSelectedFile(readerEvent.target.result);
     };
   };
-  // for voice recorder media
+  // for voice recorder
   useEffect(() => {
     if (recorderState.audio) {
       setSelectedFile(recorderState.audio);
