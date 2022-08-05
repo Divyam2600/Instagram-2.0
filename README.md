@@ -19,6 +19,7 @@ Current Features :
 <li>Comment Functionality</li>
 <li>Adding Emojis in  Comments</li>
 <li>Like Functionality on both Posts and Comments</li>
+<li>Double Tap Like Functionality with Slick Animation on Posts</li>
 <li>Getting Suggestions to Follow Users</li>
 <li>Profile Page with User data</li>
 <li>Default Profile Image to every User on SignUp</li>
