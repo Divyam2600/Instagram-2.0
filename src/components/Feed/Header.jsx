@@ -42,7 +42,7 @@ function Header({ id, username, userImage }) {
             leaveFrom="transform opacity-100 scale-100"
             leaveTo="transform opacity-0 scale-95"
           >
-            <Menu.Items className="absolute right-3 mt-1 w-36 origin-top-right rounded-md border border-gray-100 border-opacity-50 bg-white shadow-md ring-1 ring-black ring-opacity-5 focus:outline-none">
+            <Menu.Items className="absolute right-3 z-50 mt-1 w-36 origin-top-right rounded-md border border-gray-100 border-opacity-50 bg-white shadow-md ring-1 ring-black ring-opacity-5 focus:outline-none">
               <Menu.Item>
                 <Menu.Button
                   className=" flex w-full items-center justify-center px-4 py-2 text-sm font-semibold text-red-400 hover:text-red-500"
