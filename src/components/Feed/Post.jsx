@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import Header from './Header';
 import Image from './Image';
 import Buttons from './Buttons';
@@ -9,16 +9,28 @@ import Comments from './Comments';
 function Post({ content }) {
   const handleFocus = () => commentInput.current.focus();
   const commentInput = useRef(null);
+  const [toggledLiked, setToggledLiked] = useState(content.userLikedPhoto);
+  const [likes, setLikes] = useState(content.likes?.length);
   return (
     <div className="container my-5 divide-y rounded-md border bg-white shadow-md">
       <Header id={content.id} username={content.username} userImage={content.userImage} />
-      <Image src={content.imageSrc} caption={content.caption} />
+      <Image
+        src={content.imageSrc}
+        caption={content.caption}
+        id={content.id}
+        toggledLiked={toggledLiked}
+        setToggledLiked={setToggledLiked}
+        likes={likes}
+        setLikes={setLikes}
+      />
       <div>
         <Buttons
           id={content.id}
-          totalLikes={content.likes?.length}
-          likedPhoto={content.userLikedPhoto}
           handleFocus={handleFocus}
+          toggledLiked={toggledLiked}
+          setToggledLiked={setToggledLiked}
+          likes={likes}
+          setLikes={setLikes}
         />
         <Captions caption={content.caption} username={content.username} />
       </div>

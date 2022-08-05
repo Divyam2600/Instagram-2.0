@@ -1,21 +1,19 @@
-import React, { useContext, useState } from 'react';
+import React from 'react';
 import { BookmarkIcon, ChatIcon, HeartIcon, PaperAirplaneIcon } from '@heroicons/react/outline';
 import { useRecoilState } from 'recoil';
 import { likesModalState } from '../../atoms/modalAtom';
 import { photoIdState } from '../../atoms/idAtom';
 import { HeartIcon as HeartIconFilled } from '@heroicons/react/solid';
 import PropTypes from 'prop-types';
-import UserContext from '../../context/user';
 import { updateLikes } from '../../services/firebase';
+import useUser from '../../hooks/use-user';
 
-function Buttons({ id, totalLikes, likedPhoto, handleFocus }) {
+function Buttons({ id, handleFocus, toggledLiked, setToggledLiked, likes, setLikes }) {
   const {
-    user: { uid: userId = '' }
-  } = useContext(UserContext);
+    user: { userId }
+  } = useUser();
   const [open, setOpen] = useRecoilState(likesModalState);
   const [photoId, setPhotoId] = useRecoilState(photoIdState);
-  const [toggledLiked, setToggledLiked] = useState(likedPhoto);
-  const [likes, setLikes] = useState(totalLikes);
   // update the like count of the photo
   const handleToggleLiked = async () => {
     setToggledLiked((toggledLiked) => !toggledLiked);
@@ -71,7 +69,9 @@ export default Buttons;
 
 Buttons.propTypes = {
   id: PropTypes.string.isRequired,
-  totalLikes: PropTypes.number,
-  likedPhoto: PropTypes.bool.isRequired,
-  handleFocus: PropTypes.func.isRequired
+  handleFocus: PropTypes.func.isRequired,
+  toggledLiked: PropTypes.bool.isRequired,
+  setToggledLiked: PropTypes.func.isRequired,
+  likes: PropTypes.number.isRequired,
+  setLikes: PropTypes.func.isRequired
 };
