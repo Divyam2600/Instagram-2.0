@@ -87,6 +87,6 @@ Comment.propTypes = {
   username: PropTypes.string.isRequired,
   image: PropTypes.string.isRequired,
   comment: PropTypes.string.isRequired,
-  postedAt: PropTypes.object.isRequired,
+  postedAt: PropTypes.object,
   totalLikes: PropTypes.number
 };
