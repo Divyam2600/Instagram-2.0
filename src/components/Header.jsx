@@ -42,7 +42,7 @@ function Header() {
             <input
               type="text"
               placeholder="Search for a User ..."
-              className="block w-full rounded-md border-[2.4px] border-gray-400 bg-gray-100 p-2 pl-10 caret-transparent hover:border-gray-500 focus:outline-none sm:text-base"
+              className="block w-full rounded-md border-2 border-gray-300 bg-gray-100 bg-opacity-50 p-2 pl-10 caret-transparent hover:border-gray-500 focus:outline-none sm:text-base"
             />
           </div>
         </div>

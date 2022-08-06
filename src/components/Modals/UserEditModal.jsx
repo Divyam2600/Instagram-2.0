@@ -143,7 +143,7 @@ function UserEditModal() {
                       required
                       aria-label="Enter Your Full Name"
                       placeholder="Edit Full Name"
-                      className="mb-1 h-2 w-full rounded-md border-[2.4px] border-gray-300 bg-gray-400 bg-opacity-5 py-6 px-2 text-lg text-black scrollbar-hide hover:border-gray-500 focus:outline-none"
+                      className="mb-1 h-2 w-full rounded-md border-2 border-gray-300 bg-gray-100 bg-opacity-50 py-6 px-2 text-lg text-black scrollbar-hide hover:border-gray-500 focus:outline-none"
                       onChange={({ target }) => {
                         setFullName(target.value), setError();
                       }}
@@ -154,7 +154,7 @@ function UserEditModal() {
                       required
                       aria-label="Enter Your User Name"
                       placeholder="Edit Username"
-                      className=" mb-1 h-2 w-full rounded-md border-[2.4px] border-gray-300 bg-gray-400 bg-opacity-5 py-6 px-2 text-lg text-black scrollbar-hide hover:border-gray-500 focus:outline-none"
+                      className=" mb-1 h-2 w-full rounded-md border-2 border-gray-300 bg-gray-100 bg-opacity-50 py-6 px-2 text-lg text-black scrollbar-hide hover:border-gray-500 focus:outline-none"
                       onChange={({ target }) => {
                         setUserName(target.value), setError();
                       }}
@@ -167,7 +167,7 @@ function UserEditModal() {
                       required
                       aria-label="Enter Your Bio"
                       placeholder="Edit Bio..."
-                      className="h-40 w-full resize-none rounded-md border-[2.4px] border-gray-300 bg-gray-400 bg-opacity-5 p-2 text-sm text-black scrollbar-hide placeholder:text-lg hover:border-gray-500 focus:outline-none"
+                      className="h-40 w-full resize-none rounded-md border-2 border-gray-300 bg-gray-100 bg-opacity-50 p-2 text-sm text-black scrollbar-hide placeholder:text-lg hover:border-gray-500 focus:outline-none"
                       onChange={({ target }) => {
                         setEditBio(target.value), setError();
                       }}

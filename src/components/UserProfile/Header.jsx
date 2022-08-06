@@ -49,7 +49,7 @@ function Header({ photosCount, profile, followerCount, followingCount, setFollow
   return !profile.image ? (
     <HeadLoader />
   ) : (
-    <div className="container flex flex-col space-y-1 py-2">
+    <div className="flex flex-col space-y-1 py-2">
       <div className="flex max-w-sm justify-evenly md:max-w-none md:py-2">
         <img
           src={profile.image}
@@ -164,7 +164,7 @@ function Header({ photosCount, profile, followerCount, followingCount, setFollow
           following={user.following}
           loggedInUserDocId={user.id}
         />
-        <div className="-mx-6 flex justify-between border-y  px-10 py-2 text-center text-sm font-semibold text-gray-400">
+        <div className="-mx-6 flex justify-between border-y px-10 py-2 text-center text-sm font-semibold text-gray-400">
           <p className="flex flex-col">
             <span className="-mb-1 text-lg font-bold text-black">{photosCount}</span>
             {photosCount === 1 ? `Post` : `Posts`}
