@@ -1,4 +1,4 @@
-import React, { Fragment, useContext, useEffect, useRef, useState } from 'react';
+import React, { Fragment, useEffect, useRef, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import { photoDisplayModalState } from '../../atoms/modalAtom';
 import { photoIdState } from '../../atoms/idAtom';
@@ -10,22 +10,22 @@ import Image from '../Feed/Image';
 import Buttons from '../Feed/Buttons';
 import Captions from '../Feed/Captions';
 import Comments from '../Feed/Comments';
-import UserContext from '../../context/user';
+import useUser from '../../hooks/use-user';
 
 function PhotoDisplayModal() {
   const [open, setOpen] = useRecoilState(photoDisplayModalState);
   const [photoId, setPhotoId] = useRecoilState(photoIdState);
   const [photo, setPhoto] = useState(null);
-  const handleFocus = () => commentInput.current.focus();
-  const commentInput = useRef(null);
   const {
-    user: { uid: userId = '' }
-  } = useContext(UserContext);
+    user: { userId = '' }
+  } = useUser();
   useEffect(() => {
     if (open) {
       const photoObject = async () => {
         const photos = await getPhoto(photoId, userId);
         setPhoto(photos);
+        // photo && setToggledLiked(photo.userLikedPhoto);
+        // photo && setLikes(photo.likes.length);
       };
       if (photoId) {
         photoObject();
@@ -71,24 +71,7 @@ function PhotoDisplayModal() {
               >
                 <XIcon className=" h-6 w-6 text-gray-300" />
               </button>
-              {photo && (
-                <div className="divide-y md:flex md:space-y-6 md:divide-y-0">
-                  <div className="md:-mr-1 md:border-r">
-                    <Header username={photo.username} userImage={photo.userImage} />
-                    <Image src={photo.imageSrc} caption={photo.caption} />
-                    <Buttons
-                      id={photoId}
-                      totalLikes={photo.likes?.length}
-                      likedPhoto={photo.userLikedPhoto}
-                      handleFocus={handleFocus}
-                    />
-                    <Captions caption={photo.caption} username={photo.username} />
-                  </div>
-                  <div className="items-end md:ml-1 md:flex">
-                    <Comments id={photoId} postedAt={photo.timestamp} commentInput={commentInput} />
-                  </div>
-                </div>
-              )}
+              {photo && <Photo photoId={photoId} photo={photo} />}
             </div>
           </Transition.Child>
         </div>
@@ -98,3 +81,38 @@ function PhotoDisplayModal() {
 }
 
 export default PhotoDisplayModal;
+
+export function Photo({ photoId, photo }) {
+  const [toggledLiked, setToggledLiked] = useState(photo.userLikedPhoto);
+  const [likes, setLikes] = useState(photo.likes?.length);
+  const handleFocus = () => commentInput.current.focus();
+  const commentInput = useRef(null);
+  return (
+    <div className="divide-y md:flex md:space-y-6 md:divide-y-0">
+      <div className="md:-mr-1 md:border-r">
+        <Header id={photoId} username={photo.username} userImage={photo.userImage} />
+        <Image
+          src={photo.imageSrc}
+          caption={photo.caption}
+          id={photoId}
+          toggledLiked={toggledLiked}
+          setToggledLiked={setToggledLiked}
+          likes={likes}
+          setLikes={setLikes}
+        />
+        <Buttons
+          id={photoId}
+          handleFocus={handleFocus}
+          toggledLiked={toggledLiked}
+          setToggledLiked={setToggledLiked}
+          likes={likes}
+          setLikes={setLikes}
+        />
+        <Captions caption={photo.caption} username={photo.username} />
+      </div>
+      <div className="items-end md:ml-1 md:flex">
+        <Comments id={photoId} postedAt={photo.timestamp} commentInput={commentInput} />
+      </div>
+    </div>
+  );
+}
