@@ -23,7 +23,7 @@ function MessageBox({ userId, messageId }) {
       <div className="flex h-full flex-col overflow-hidden">
         <Header username={user.username} image={user.image} />
         <div
-          className="flex h-full flex-col-reverse overflow-y-scroll pt-2 scrollbar-hide"
+          className="flex h-full flex-col overflow-y-scroll pt-2 scrollbar-hide"
           ref={messageRef}
         >
           <Message messageId={messageId} />

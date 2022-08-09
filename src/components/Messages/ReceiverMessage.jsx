@@ -20,7 +20,6 @@ function ReceiverMessage({ message, image, username, sentAt, isImage, isVideo, i
   }
   return (
     <>
-      <p className="message-time ml-11">{moment(sentAt?.toDate()).format('LT')}</p>
       <div className="message-container">
         {!isAudio ? (
           <>
@@ -70,6 +69,7 @@ function ReceiverMessage({ message, image, username, sentAt, isImage, isVideo, i
           <AudioMessage message={message} image={image} username={username} audioId={audioId} />
         )}
       </div>
+      <p className="message-time ml-11">{moment(sentAt?.toDate()).format('LT')}</p>
     </>
   );
 }

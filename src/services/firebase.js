@@ -472,7 +472,7 @@ export async function createUserMessage(activeUserId, followingUserId) {
 // to get the chats between the users whose message id is passed
 export function getChats(messageId) {
   const chatRef = collection(db, 'messages', messageId, 'chats');
-  return query(chatRef, orderBy('sentAt', 'desc'));
+  return query(chatRef, orderBy('sentAt', 'asc'));
 }
 
 // to add a text-chat sent by the user(s)

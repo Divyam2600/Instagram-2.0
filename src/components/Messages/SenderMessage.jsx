@@ -20,7 +20,6 @@ function SenderMessage({ message, image, username, sentAt, isImage, isVideo, isA
   }
   return (
     <>
-      <p className="message-time mr-3 self-end">{moment(sentAt?.toDate()).format('LT')}</p>
       <div className="message-container justify-end self-end ">
         {!isAudio ? (
           <>
@@ -70,6 +69,7 @@ function SenderMessage({ message, image, username, sentAt, isImage, isVideo, isA
           <AudioMessage message={message} image={image} username={username} audioId={audioId} />
         )}
       </div>
+      <p className="message-time mr-3 text-end">{moment(sentAt?.toDate()).format('LT')}</p>
     </>
   );
 }
