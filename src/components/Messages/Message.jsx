@@ -8,7 +8,7 @@ import useUser from '../../hooks/use-user';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 
-function Message({ messageId }) {
+function Message({ messageId, messageRef }) {
   const [chats, setChats] = useState([]);
   const db = getFirestore(firebaseApp);
   const {
@@ -32,13 +32,16 @@ function Message({ messageId }) {
       day1.getDate() != day2?.getDate()
     );
   };
+  if (messageRef.current) {
+    messageRef.current.scrollTo({ top: messageRef.current.scrollHeight });
+  }
   return (
     chats.length > 0 &&
     chats?.map((chat, i) => (
       <div key={i} className="">
         {isDifferentDay(i) && (
           <div
-            className="sticky top-0 my-2 mx-auto max-w-fit items-start rounded-lg bg-gray-300 py-1 px-4 text-center text-sm text-black"
+            className="sticky top-0 z-10 my-2 mx-auto max-w-fit rounded-lg bg-gray-300 py-1 px-4 text-center text-sm text-black"
             key={i}
           >
             {moment(chats[i]?.data().sentAt?.toDate()).calendar({

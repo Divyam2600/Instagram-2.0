@@ -26,7 +26,7 @@ function MessageBox({ userId, messageId }) {
           className="flex h-full flex-col overflow-y-scroll pt-2 scrollbar-hide"
           ref={messageRef}
         >
-          <Message messageId={messageId} />
+          <Message messageId={messageId} messageRef={messageRef} />
         </div>
         <MessageInput messageId={messageId} messageRef={messageRef} />
       </div>
