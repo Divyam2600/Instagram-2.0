@@ -31,6 +31,7 @@ Current Features :
 <li>One to One Private Messaging functionality with Users in Following</li>
 <li>Media(Image, Video), Audio Sending support in Private Messages</li>
 <li>Voice Recording and Sending in Private Messages</li>
+<li>Grouping Messages According to Date</li>
 <li>Last Active Status of Users in Message</li>
 <li>Protected Routes</li>
 <li>Progress Bar on Route Change</li>
