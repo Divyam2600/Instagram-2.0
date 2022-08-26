@@ -36,6 +36,10 @@ function SignUp() {
       setError('Invalid Name.');
       setFullName('');
       setLoading(false);
+    } else if (username.length > 10) {
+      setError('Username can be maximum of 10 characters.');
+      setUsername('');
+      setLoading(false);
     } else if (!usernameExists.length) {
       try {
         const createdUserResult = await createUserWithEmailAndPassword(
