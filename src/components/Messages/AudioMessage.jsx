@@ -77,7 +77,7 @@ function AudioMessage({ message, image, username, audioId }) {
         <img
           src={image}
           alt={username}
-          className="aspect-auto h-10 w-10 cursor-pointer rounded-full object-cover xxs:h-8 xxs:w-8 xs:h-8 xs:w-8"
+          className="aspect-square h-10 w-10 cursor-pointer rounded-full object-cover xxs:h-8 xxs:w-8 xs:h-8 xs:w-8"
         />
         <MicrophoneIcon className="absolute -bottom-[2px] -right-1 h-5 w-5 rounded-full border-2 border-blue-800 bg-white p-[1px] text-blue-800" />
       </div>

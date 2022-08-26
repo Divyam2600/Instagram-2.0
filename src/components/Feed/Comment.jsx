@@ -39,7 +39,7 @@ function Comment({ photoId, commentId, userId, username, image, comment, postedA
     <div className="my-3 ml-10 mr-5 flex items-center space-x-2">
       <div className="flex flex-1">
         <img
-          className="h-9 w-9 rounded-full border border-gray-300 object-cover p-[1px]"
+          className="aspect-square h-9 w-9 rounded-full border border-gray-300 object-cover p-[1px]"
           src={image}
           alt="User Image"
         />

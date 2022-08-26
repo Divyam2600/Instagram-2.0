@@ -23,7 +23,11 @@ function ReceiverMessage({ message, image, username, sentAt, isImage, isVideo, i
       <div className="message-container">
         {!isAudio ? (
           <>
-            <img src={image} alt="" className="h-6 w-6 self-end rounded-full object-cover" />
+            <img
+              src={image}
+              alt=""
+              className="aspect-square h-6 w-6 self-end rounded-full object-cover"
+            />
             {!isImage && !isVideo && (
               <span className="absolute top-0 left-[26px] h-0 w-0 border-8 border-blue-500 border-x-transparent border-b-transparent" />
             )}
@@ -38,7 +42,7 @@ function ReceiverMessage({ message, image, username, sentAt, isImage, isVideo, i
                 <img
                   src={message}
                   alt={`Sent By ${username}`}
-                  className="-ml-2 rounded-2xl object-cover"
+                  className="-ml-2 aspect-square rounded-2xl object-cover"
                 />
               )}
               {isVideo && (

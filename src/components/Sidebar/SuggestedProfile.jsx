@@ -24,7 +24,7 @@ function SuggestedProfile({
       <img
         src={userImage}
         alt={username}
-        className="h-12 w-12 cursor-pointer rounded-full border-2 border-gray-300 object-cover p-[2px]"
+        className="aspect-square h-12 w-12 cursor-pointer rounded-full border-2 border-gray-300 object-cover p-[2px]"
       />
       <Link to={`/profile/${username}`} className="ml-4 mr-2 flex-1">
         <h2 className="cursor-pointer text-sm font-semibold">{username}</h2>

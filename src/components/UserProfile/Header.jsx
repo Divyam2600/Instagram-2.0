@@ -54,7 +54,7 @@ function Header({ photosCount, profile, followerCount, followingCount, setFollow
         <img
           src={profile.image}
           alt={profile.username}
-          className="mx-4 h-24 w-24 rounded-full object-cover sm:h-32 sm:w-32 md:h-40 md:w-40"
+          className="mx-4 aspect-square h-24 w-24 rounded-full object-cover sm:h-32 sm:w-32 md:h-40 md:w-40"
         />
         <div className="mr-2 flex flex-col space-y-3 md:ml-5">
           <div className="flex flex-col space-y-2 md:flex-row md:space-x-4 md:space-y-0">

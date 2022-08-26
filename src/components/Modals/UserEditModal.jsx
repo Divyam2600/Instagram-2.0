@@ -184,7 +184,7 @@ function UserEditModal() {
                       <img
                         src={selectedFile}
                         alt="Posting Image"
-                        className="w-full cursor-pointer object-contain"
+                        className="aspect-square w-full cursor-pointer object-contain"
                         onClick={() => setSelectedFile(null)}
                       />
                     ) : (

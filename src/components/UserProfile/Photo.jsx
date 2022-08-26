@@ -28,7 +28,7 @@ function Photo({ image, photoId, likes }) {
       <img
         src={image}
         alt="Posted Image"
-        className="h-40 min-h-full border object-cover object-center xxs:h-32 xs:h-36 sm:h-40 md:h-44 lg:h-48 "
+        className="aspect-square h-40 min-h-full border object-cover object-center xxs:h-32 xs:h-36 sm:h-40 md:h-44 lg:h-48 "
       />
       <div className="absolute inset-0 z-10 hidden min-h-full min-w-full items-center justify-evenly group-hover:flex group-hover:bg-black group-hover:bg-opacity-70">
         <p className="flex items-center font-bold text-white">

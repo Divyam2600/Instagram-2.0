@@ -34,7 +34,7 @@ function Stories({ activeUserId, following }) {
               <img
                 src={content.image}
                 alt={content.username}
-                className="h-16 w-16 cursor-pointer rounded-full border-2 border-solid border-transparent object-cover p-[2px] border-gradient-t-insta-gray-50"
+                className="aspect-square h-16 w-16 cursor-pointer rounded-full border-2 border-solid border-transparent object-cover p-[2px] border-gradient-t-insta-gray-50"
               />
               {content?.userId === activeUserId && (
                 <span className="absolute top-[50%] -right-1 rounded-full border-2 border-white bg-white">

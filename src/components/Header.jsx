@@ -81,7 +81,7 @@ function Header() {
                   <img
                     src={image}
                     alt={username}
-                    className="mt-1 h-10 w-10 rounded-full border-2 border-gray-200 object-cover p-[1px]"
+                    className="mt-1 aspect-square h-10 w-10 rounded-full border-2 border-gray-200 object-cover p-[1px]"
                   />
                 </Link>
               </div>

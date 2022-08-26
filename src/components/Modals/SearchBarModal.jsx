@@ -96,7 +96,7 @@ function SearchBarModal() {
                           >
                             <img
                               src={user.image}
-                              className="h-12 w-12 rounded-full border border-gray-200 object-cover shadow-sm"
+                              className="aspect-square h-12 w-12 rounded-full border border-gray-200 object-cover shadow-sm"
                               alt={user.username}
                             />
                             <p className="flex flex-col">

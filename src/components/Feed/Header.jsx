@@ -20,7 +20,7 @@ function Header({ id, username, userImage }) {
       <img
         src={userImage}
         alt={username}
-        className="mr-3 h-14 w-14 rounded-full border-2 border-gray-300 object-cover p-[2px] text-center"
+        className="mr-3 aspect-square h-14 w-14 rounded-full border-2 border-gray-300 object-cover p-[2px] text-center"
       />
       <Link to={`/profile/${username}`} className="flex-1 font-semibold text-gray-800">
         <p>{username}</p>

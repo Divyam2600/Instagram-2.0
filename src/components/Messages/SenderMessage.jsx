@@ -38,7 +38,7 @@ function SenderMessage({ message, image, username, sentAt, isImage, isVideo, isA
                 <img
                   src={message}
                   alt={`Sent By ${username}`}
-                  className="rounded-2xl object-cover"
+                  className="aspect-square rounded-2xl object-cover"
                 />
               )}
               {isVideo && message && (

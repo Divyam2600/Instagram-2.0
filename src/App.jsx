@@ -22,7 +22,7 @@ function App() {
           fallback={
             <div className="flex h-screen flex-col items-center justify-center">
               <img
-                className=" h-16 w-16 animate-pulse opacity-25"
+                className=" aspect-square h-16 w-16 animate-pulse opacity-25"
                 src="/images/logo-icon.png"
                 alt="Logo"
               />

@@ -24,7 +24,7 @@ function SideProfile({ open, username, image, activeUserId, followingUserId }) {
       <img
         src={image}
         alt={username}
-        className="h-12 w-12 cursor-pointer rounded-full object-cover"
+        className="aspect-square h-12 w-12 cursor-pointer rounded-full object-cover"
       />
       <div
         className={`px-2 py-1 text-sm font-semibold duration-300 ${

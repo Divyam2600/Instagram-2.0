@@ -76,7 +76,7 @@ function CommentLikesModal() {
                     <img
                       src={user.image}
                       alt={user.username}
-                      className="mr-3 h-14 w-14 rounded-full border-2 border-gray-300 object-cover p-[2px] text-center"
+                      className="mr-3 aspect-square h-14 w-14 rounded-full border-2 border-gray-300 object-cover p-[2px] text-center"
                     />
                     <Dialog.Title as="h3" className="font-bold text-gray-800">
                       <Link to={`/profile/${user.username}`} onClick={() => setOpen(false)}>

@@ -23,7 +23,7 @@ export function Header({ username, image }) {
       <img
         src={image}
         alt={username}
-        className="h-12 w-12 rounded-full object-cover sm:h-16 sm:w-16"
+        className="aspect-square h-12 w-12 rounded-full object-cover sm:h-16 sm:w-16"
       />
       <div className="flex-1 items-center pl-2 font-semibold">
         <Link to={`/profile/${username}`}>{username}</Link>
