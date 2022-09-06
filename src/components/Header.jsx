@@ -21,7 +21,7 @@ function Header() {
   const [isOpen, setIsOpen] = useRecoilState(searchBarModalState);
   const auth = getAuth();
   const {
-    user: { username, image, userId }
+    user: { username, image, userId, following }
   } = useUser();
   return (
     <div className="fixed top-0 z-50 w-screen border-b bg-white shadow-sm">
@@ -57,9 +57,11 @@ function Header() {
                 <Link to={`/messages/${userId}`}>
                   <PaperAirplaneIcon className="navButton mb-[6px] rotate-50" />
                 </Link>
-                <div className="absolute -top-1 -right-1 h-5 w-5 animate-pulse rounded-full bg-red-500 text-center text-sm text-white">
-                  3
-                </div>
+                {following && (
+                  <div className="absolute -top-1 -right-1 h-5 w-5 animate-pulse rounded-full bg-red-500 text-center text-sm text-white">
+                    {following.length}
+                  </div>
+                )}
               </div>
               <PlusCircleIcon onClick={() => setOpen(true)} className="navButton" />
               <Link to={ROUTES.LOGIN}>

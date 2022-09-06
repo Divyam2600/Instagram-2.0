@@ -46,38 +46,40 @@ function Messages() {
       <SendMedia />
       <Header />
       <main className="relative mx-auto mt-20 flex max-h-fit justify-end space-x-2 p-2 sm:max-w-xl md:max-w-2xl lg:max-w-3xl xl:max-w-4xl">
-        <section
-          className={`absolute left-2 z-10 flex h-[84vh] flex-col space-y-1 overflow-x-hidden overflow-y-scroll rounded-xl border bg-[#fbfcfc] py-3 px-2 shadow-md duration-300 scrollbar-hide ${
-            open ? 'w-56 shadow-lg' : 'w-[75px]'
-          } `}
-        >
-          <ArrowCircleRightIcon
-            className={`sticky -mr-1 fill-[#fbfcfc] -mt-2 h-6 w-6 cursor-pointer self-end duration-300 ${
-              open && 'rotate-180'
-            }`}
-            onClick={() => setOpen(!open)}
-          />
-          {users?.map((result) => (
-            <Link
-              to={`/messages/${userId}?with=${result.userId}&messageId=${result.messageId}`}
-              key={result.userId}
-              className={`flex items-center rounded-xl p-1 duration-200 active:scale-90 ${
-                open
-                  ? ' border px-1 hover:scale-105 hover:bg-gray-200 hover:bg-opacity-70'
-                  : 'border-none hover:scale-125'
+        {users?.length > 0 && (
+          <section
+            className={`absolute left-2 z-10 flex h-[84vh] flex-col space-y-1 overflow-x-hidden overflow-y-scroll rounded-xl border bg-[#fbfcfc] py-3 px-2 shadow-md duration-300 scrollbar-hide ${
+              open ? 'w-56 shadow-lg' : 'w-[75px]'
+            } `}
+          >
+            <ArrowCircleRightIcon
+              className={`sticky -mr-1 -mt-2 h-6 w-6 cursor-pointer self-end fill-[#fbfcfc] duration-300 ${
+                open && 'rotate-180'
               }`}
-              onClick={() => setOpen(false)}
-            >
-              <SideProfile
-                open={open}
-                username={result.username}
-                image={result.image}
-                activeUserId={userId}
-                followingUserId={result.userId}
-              />
-            </Link>
-          ))}
-        </section>
+              onClick={() => setOpen(!open)}
+            />
+            {users.map((result) => (
+              <Link
+                to={`/messages/${userId}?with=${result.userId}&messageId=${result.messageId}`}
+                key={result.userId}
+                className={`flex items-center rounded-xl p-1 duration-200 active:scale-90 ${
+                  open
+                    ? ' border px-1 hover:scale-105 hover:bg-gray-200 hover:bg-opacity-70'
+                    : 'border-none hover:scale-125'
+                }`}
+                onClick={() => setOpen(false)}
+              >
+                <SideProfile
+                  open={open}
+                  username={result.username}
+                  image={result.image}
+                  activeUserId={userId}
+                  followingUserId={result.userId}
+                />
+              </Link>
+            ))}
+          </section>
+        )}
         <section className="h-[84vh] w-[83%] rounded-xl bg-white shadow-md xxs:w-[78%] xs:w-[80%] sm:w-[85%] md:w-[87%] lg:w-[89%] xl:w-[90%]">
           {!query.get('with') ? (
             <div className="flex h-full flex-col items-center justify-center space-y-4 text-center text-2xl font-semibold text-gray-600 sm:text-3xl">
