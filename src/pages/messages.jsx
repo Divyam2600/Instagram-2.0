@@ -47,12 +47,12 @@ function Messages() {
       <Header />
       <main className="relative mx-auto mt-20 flex max-h-fit justify-end space-x-2 p-2 sm:max-w-xl md:max-w-2xl lg:max-w-3xl xl:max-w-4xl">
         <section
-          className={`absolute left-2 z-10 flex h-[84vh] flex-col space-y-1 overflow-y-scroll rounded-xl border bg-[#fbfcfc] py-3 px-2 shadow-md duration-300 scrollbar-hide ${
+          className={`absolute left-2 z-10 flex h-[84vh] flex-col space-y-1 overflow-x-hidden overflow-y-scroll rounded-xl border bg-[#fbfcfc] py-3 px-2 shadow-md duration-300 scrollbar-hide ${
             open ? 'w-56 shadow-lg' : 'w-[75px]'
           } `}
         >
           <ArrowCircleRightIcon
-            className={`sticky -mr-1 -mt-2 h-6 w-6 cursor-pointer self-end duration-300 ${
+            className={`sticky -mr-1 fill-[#fbfcfc] -mt-2 h-6 w-6 cursor-pointer self-end duration-300 ${
               open && 'rotate-180'
             }`}
             onClick={() => setOpen(!open)}

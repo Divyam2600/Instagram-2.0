@@ -63,6 +63,9 @@
   .message-time {
     @apply -mt-[10px] mb-1 text-[10px] leading-4 tracking-wide text-gray-400;
   }
+  img{
+    @apply select-none
+  }
   @screen sm {
     .navButton {
       @apply inline-flex h-8 w-8;
