@@ -1,0 +1,114 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@tailwind variants;
+
+@font-face {
+  font-family: Poppins;
+  src: url("/assets/fonts/Poppins-Light.otf"),
+    url("/assets/fonts/Poppins-Medium.otf"),
+    url("/assets/fonts/Poppins-Regular.otf");
+}
+
+@layer base {
+  html {
+    @apply bg-gray-100/30 scrollbar-thin scrollbar-thumb-gray-400 xs:scrollbar-hide;
+    font-family: Poppins, system-ui, sans-serif;
+  }
+  button {
+    @apply cursor-pointer;
+  }
+  img,
+  label,
+  input {
+    @apply select-none;
+  }
+}
+
+@layer components {
+  .form {
+    @apply mx-auto my-4 flex min-h-screen max-w-sm flex-col items-center justify-center space-y-4;
+  }
+  .form > .top-section {
+    @apply flex w-full flex-col items-center space-y-4 border border-gray-200 bg-white py-5 px-7;
+  }
+  .form > .bottom-section {
+    @apply flex w-full items-center justify-center gap-x-2 border border-gray-200 bg-white py-4 px-12;
+  }
+  .error-text {
+    @apply text-sm font-semibold text-red-500;
+  }
+  .input {
+    @apply relative z-0 mb-2 h-2 w-full rounded-md border-2 border-gray-300 bg-gray-100/50 py-6 px-4 text-gray-900 hover:border-gray-500;
+  }
+  .input > input {
+    @apply absolute bottom-1.5 h-3/5 w-4/5 bg-transparent focus:outline-none;
+  }
+  .floating-label {
+    @apply pointer-events-none absolute left-2.5 top-5 origin-[0] -translate-y-6 scale-75 transform bg-transparent px-2 py-1 text-sm font-semibold text-gray-400 duration-300 peer-placeholder-shown:top-2 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-placeholder-shown:text-base peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-sm peer-focus-visible:top-5;
+  }
+  .submit {
+    @apply animate-small my-3 w-full rounded-md border bg-sky-500 py-2 text-lg font-semibold text-white;
+  }
+  .animate-small {
+    @apply transition-all duration-200 ease-in-out group-hover:scale-105 group-active:scale-95 hover:scale-105 active:scale-95;
+  }
+  .animate-large {
+    @apply transition-all duration-200 ease-in-out hover:scale-110 active:scale-90;
+  }
+  .nav-item {
+    @apply flex cursor-pointer items-center space-x-2 rounded-full px-2 py-2 text-xl hover:bg-gray-200/50 lg:px-3 lg:py-1.5;
+  }
+  .nav-icon {
+    @apply animate-small h-8 w-8 cursor-pointer group-hover:stroke-2;
+  }
+  .side-nav-text {
+    @apply fixed left-20 z-50 scale-0 whitespace-nowrap rounded-lg bg-white p-2 text-sm shadow-md transition-all duration-200 ease-in-out group-hover:scale-100 lg:relative lg:left-0 lg:scale-100 lg:bg-transparent lg:shadow-none lg:transition-none;
+  }
+  .top-nav-text {
+    @apply absolute top-[72px] z-10 scale-0 whitespace-nowrap rounded-lg bg-white p-2 text-sm shadow-md transition-all duration-200 ease-in-out group-hover:scale-100;
+  }
+  .bottom-nav-text {
+    @apply top-nav-text bottom-[72px] top-[initial];
+  }
+  .action-button {
+    @apply -mb-1 flex w-16 cursor-pointer flex-col items-center py-1 transition-all duration-100 hover:border-t-2 hover:border-gray-700;
+  }
+  .tail-in {
+    @apply absolute top-0 h-0 w-0 rounded-sm border-8 border-gray-200 border-x-transparent border-b-transparent;
+  }
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px #f9f9fa inset !important;
+  box-shadow: 0 0 0 30px #f9f9fa inset !important;
+}
+
+.carousel-status {
+  text-shadow: none !important;
+  top: 6px !important;
+}
+
+.EmojiPickerReact.epr-main {
+  position: absolute !important;
+  bottom: 56px;
+  left: 16px;
+  z-index: 10;
+}
+
+.slide {
+  justify-content: center;
+  display: flex;
+}
+
+.messageInput > .EmojiPickerReact.epr-main {
+  left: 0px;
+}
+
+.scrollbar-thin::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
